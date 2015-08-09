@@ -41,11 +41,15 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
+					
 					<h2>Programowanie funkcyjne</h2>
 					<h3>wprowadzenie</h3>
 					<p>
-						<small>Jakub Madej. PGS Software. 10 sierpnia 2015.</small>
+						<small>Jakub Madej. 10 sierpnia 2015.</small>
 					</p>
+					
+					<img style="border: none; box-shadow: none" width="300" height="170" data-src="img/pgs.png">
+					
 				</section>
 
 				<section>
@@ -455,7 +459,7 @@ Arrays.sort(rosterAsArray, Person::compareByAge);
                         <h2>default methods</h2>
                         <ul>
                             <li class="fragment">umożliwiają rozszerzenie interfejsów zapewniając kompatybilność z kodem napisanym dla ich starszych wersji</li>
-                            <li class="fragment"><i>default</i></li>
+                            <li class="fragment"><code>default</code></li>
                             <li class="fragment">mogą zostać zadeklarowane ponownie</li>
                             <li class="fragment">mogą zostać nadpisane</li>
                             <li class="fragment">przykład: <i>stream()</i></li>
@@ -467,19 +471,35 @@ Arrays.sort(rosterAsArray, Person::compareByAge);
 					<section>
 						<h2>Stream API</h2>
 							<ul>
-								<li>wspiera programowanie funkcyjne na strumieniach</li>
-								<li>ukrywa iterację po kolekcji</li>
-								<li>korzysta z możliwości przedstawionych wcześniej, np. <i>default methods</i></li>
-								<li>umożliwia zrównoleglenie operacji <br><i>Collections.steram()</i> vs <i>Collections.parallelStream()</i></li>
+								<li class="fragment">wspiera programowanie funkcyjne na strumieniach</li>
+								<li class="fragment">korzysta z możliwości przedstawionych wcześniej, np. <i>default methods</i></li>
+								<li class="fragment">umożliwia zrównoleglenie operacji <br><i>Collections.stream()</i> vs <i>Collections.parallelStream()</i></li>
 							</ul>
 					</section>
+					
+					<section>
+						<h2>Stream API - wsparcie <i>FP</i></h2>
+							<ul>
+								<li class="fragment">ukrywa iterację po kolekcji</li>
+								<div>
+								    <div class="fragment" style="width:400px;float:left;display:inline-block;">
+									<img height="300" width="100%" data-src="img/external_iteration_alpha.png" alt="Zewnętrzna iteracja" style="border: 1px">
+								    </div>
+								    <div class="fragment" style="margin-left:400px;">
+									<img height="300" data-src="img/internal_iteration_alpha.png" alt="Wewnętrzna iteracja" style="border: 1px">
+								    </div>
+								</div>
+							</ul>
+					</section>
+					
+					
 					<section>
 						<h2>Cechy strumienia</h2>
 							<ul>
-								<li>może mieć nieskończony rozmiar</li>
-								<li>moze być trawersowany tylko raz <small><code>java.lang.IllegalStateException: 
+								<li class="fragment">może mieć nieskończony rozmiar</li>
+								<li class="fragment">moze być trawersowany tylko raz <small><code>java.lang.IllegalStateException: 
   stream has already been operated upon or closed</code></small></li>
-								<li>jest nastawiony na przetwarzanie a nie na przechowywanie elementów</i></li>
+								<li class="fragment">jest nastawiony na przetwarzanie a nie na przechowywanie elementów</i></li>
 							</ul>
 					</section>
 					<section>
