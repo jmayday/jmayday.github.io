@@ -43,9 +43,12 @@
 				<section>
 					
 					<h2>Programowanie funkcyjne</h2>
-					<h3>Stream API - naive to lamba refactoring</h3>
+					<span class="fragment">
+					<h3>Stream API</h3>
+					<h3>refaktoryzacja do lambdy</h3>
+					</span>
 					<p>
-						<small>Jakub Madej. 10 sierpnia 2015.</small>
+						<small>Jakub Madej. 13 lutego 2016.</small>
 					</p>
 					
 					<img style="border: none; box-shadow: none" width="300" height="170" data-src="img/pgs.png">
@@ -55,46 +58,159 @@
 				<section>
 					<h2>Agenda</h2>
 					<ul>
-						<li>definicje</li>
-						<li>nowości w Javie 8</li>
-						<li>przykłady</li>
+						<li>ważniejsze metody w Stream API</li>
+						<li>stream API i Collector</li>
+						<li>współbieżność a zrównoleglenie</li>
+						<li>testowanie i debugowanie</li>
 					</ul>
 				</section>
-				
+				 
 				<section>
+					
 					<section>
-						<h2>Dwa sposoby pisania kodu</h2>
+						<h2>Najważniejsze operacje</h2>
+						<p>Terminalne:</p>
 						<ul>
-							<li class="fragment">imperatywny</li>
-							<li class="fragment">deklaratywny</li>
+							<li><i>collect(toList())</i></li>
+							<li><i>min()</i> / <i>max()</i></li>
+							<li><i>reduce()</i></li>
 						</ul>
+						
+						<p>Nieterminalne:</p>
+						<ul>
+							<li><i>map()</i></li>
+							<li><i>filter()</i></li>
+						</ul>
+						
+						<aside class="notes">
+							<p>operacje terminalne (eager) i nieterminalne (lazy)</p>
+						</aside>
+					</section>
+					
+					<section>
+						<h2>Collector</h2>
+						<ul>
+							<li class="fragment">wykorzystywany przy operacjach redukcji</li>
+							<li class="fragment">klasa Collectors; toList(), toSet(), toCollection()</li>
+							<li class="fragment">akumulacja elementów do kolekcji, konkatenacja stringów, suma, min...</li>
+						</ul>
+						
+						<aside class="notes">
+							<ul>
+								<li>interfejs</li>
+								<li>pozwala tworzyć złożone obiekty z elementów strumienia</li>
+								<li>może być używany na dowolnym strumieniu przekazany do metody .collect() (terminalna)</li>
+							</ul>
+						</aside>
 
 					</section>
 					
 					<section>
-						<h2>Styl imperatywny</h2>
-						<p>imperatywność (SJP): <q>siła nakazu, nieodparta konieczność</q></p>
+						<h2>Collector&lt;A,T,R&gt;</h2>
+						<p>T - typ elementów strumienia</p>
+						<p>A - akumulator</p>
+						<p>R - rezultat redukcji</p>
 						
 						<aside class="notes">
 							<ul>
-								<li>Programowanie imperatywne wyraża żądanie jakichś czynności do wykonania</li>
-								<li>Programując imperatywnie mówimy jak coś zrobić</li>
-								<li>W rezultacie wykonane zostanie to co chemy żeby było wykonane</li>
+								<li>A może być (ukrytym) szczegółem implementacji</li>
 							</ul>
 						</aside>
 					</section>
 					
 					<section>
-						<h2>Styl deklaratywny</h2>
-						<p><q>będący jedynie deklaracją, deklarujący, wyrażający coś</q></p>
+						<h2>Collector; określony przez funkcje oraz charakterystyki:</h2>
+						<ul>
+							<li>supplier() - tworzy result container</li>
+							<li>accumulator() - dodaje element do result container'a</li>
+							<li>combiner() - łączy dwa result containery</li>
+							<li>finisher() - opcjonalnie; transformata ostatecznego wyniku</li>
+							<li>charakterystyki; np. Characteristics.CONCURRENT</li>
+						</ul>
 						
 						<aside class="notes">
 							<ul>
-								<li>Programowanie deklaratywne to podejście w którym opisujemy warunki, jakie musi spełnić końcowe rozwiązanie, a nie sekwencję kroków, które do niego prowadzą.</li>
-								<li>Programując deklaratywnie mówimy co chcemy osiągnąć. Komputer zajmuje się resztą.</li>
+								<li></li>
+								
 							</ul>
 						</aside>
 					</section>
+					
+					<section>
+						<h2>współbieżność a zrównoleglenie</h2>
+						<ul>
+							<li>współbieżność (concurrency)</li>
+							<li>zrównoleglenie (parallelism; data/task parallelism)</li>
+						</ul>
+						
+						<aside class="notes">
+							<span>pojęcia nie oznaczają tego samego. współbieżność ma miejsce, gdy zadania są realizowane we wspólnym oknie czasowym (jest zrealizowana praca, widać postęp). współbieżność nie implikuje równoległości. 
+							wykonywanie zadań równolegle niekoniecznie oznacza, że zostaną wykonane szybciej niż przy podejściu sekwencyjnym (więcej pracy dla CPU - patrz chociażby custom collector). 
+							</span>
+						</aside>
+						
+						
+					</section>
+					
+					<section>
+						<h2>zrównoleglenie</h2>
+						<ul>
+							<li>rosnące znaczenie związane z możliwośćiami sprzętu</li>
+							<li>prawo Amdahla</li>
+							<li>task paralellism - wykonywanie wielu funkcji na zestawie danych</li>
+							<li>data parallelism - wykonywanie jednej funkcji na tych samych lub różnych danych</li>
+						</ul>
+						
+						<aside class="notes">
+							<span>data parallelism dzięki podziałowi zadania na mniejsze.
+							nie każde wywołanie .stream() warto wymienić na .parallelStream().
+							rozmiar kolekcji do przetworzenia to nie jedyny czynnik który należy wiąć pod uwagę</span>
+						</aside>
+						
+						
+					</section>
+					
+					
+					<section>
+						<h2></h2>
+						<ul>
+							<li>redukcja sekwencyjna -> jeden result container</li>
+							<li>redukcja równoległa -> wiele result containerów</li>
+							<li></li>
+						</ul>
+						
+						<aside class="notes">
+							<ul>
+								<li>redukcja sekwencyjna - jeden result container, wywołanie funkcji akumulatora na każdym z elementów</li>
+								<li>redukcja równoległa - partycjonowanie wejścia, result container per partycja, akumulacja każdej partycji do 'podrezultatu', wykonanie funkcji combiner by zmergować podrezultaty</li>
+							</ul>
+						</aside>
+					</section>
+					
+					<section>
+						<h2>równoległe przetwarzanie (nie) jest darmowe. warunki:</h2>
+						<ul>
+							<li class="fragment"><i>identity constraint</i></li>
+							<span  class="fragment" >combiner.apply(a, supplier.get()).</span>
+							<li class="fragment"><i>assiociativity constraint</i></li>
+							<span class="fragment">A a1 = supplier.get();
+     accumulator.accept(a1, t1);
+     accumulator.accept(a1, t2);
+     R r1 = finisher.apply(a1);  // result without splitting
+
+     A a2 = supplier.get();
+     accumulator.accept(a2, t1);
+     A a3 = supplier.get();
+     accumulator.accept(a3, t2);
+								R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting</span>
+						</ul>
+						
+						<aside class="notes">
+							<p>przetwarzanie sekwencyjne i równoległe powinno produkować ten sam rezultat</p>
+							<p>dla kolektorów UNORDERED, produkujących kolekcje, rezultaty r1 i r2 są uważane za jednakowe, jeśli fisnished.apply(a1).equals(finished.apply(a2))</p>
+						</aside>
+					</section>
+					
 				</section>
 				
 				<section>
@@ -542,6 +658,7 @@ Arrays.sort(rosterAsArray, Person::compareByAge);
 					<p>
 						
 						- <a href="https://docs.oracle.com">https://docs.oracle.com</a> <br>
+						- <a href="https://github.com/RichardWarburton/java-8-lambdas-exercises">https://github.com/RichardWarburton/java-8-lambdas-exercises</a> <br>
 						- <a href="http://shop.oreilly.com/product/0636920030713.do">Java 8 Lambdas. Richard Warburton</a>
 					</p>
 				</section>
