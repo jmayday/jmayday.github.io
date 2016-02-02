@@ -163,7 +163,8 @@
 						
 						<aside class="notes">
 							<span>data parallelism dzięki podziałowi zadania na mniejsze.
-							nie każde wywołanie .stream() warto wymienić na .parallelStream().
+							prawo Amdahla służy do szacowania maksymalnego możliwego przyśpieszenia systemu gdy tylko jego część zostaje ulepszona 
+							nie każde wywołanie .stream() warto wymienić na .parallelStream() - wydajność!
 							rozmiar kolekcji do przetworzenia to nie jedyny czynnik który należy wiąć pod uwagę</span>
 						</aside>
 						
@@ -188,27 +189,86 @@
 					</section>
 					
 					<section>
-						<h2>równoległe przetwarzanie (nie) jest darmowe. warunki:</h2>
+						<h2>równoległe przetwarzanie (nie) jest darmowe. warunki 1/2</h2>
 						<ul>
 							<li class="fragment"><i>identity constraint</i></li>
 							<span  class="fragment" >combiner.apply(a, supplier.get()).</span>
-							<li class="fragment"><i>assiociativity constraint</i></li>
-							<span class="fragment">A a1 = supplier.get();
-     accumulator.accept(a1, t1);
-     accumulator.accept(a1, t2);
-     R r1 = finisher.apply(a1);  // result without splitting
-
-     A a2 = supplier.get();
-     accumulator.accept(a2, t1);
-     A a3 = supplier.get();
-     accumulator.accept(a3, t2);
-								R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting</span>
+							<pre class="fragment"><code data-trim contenteditable>
+// pomnóż liczby z listy i pomnóż wynik przez 5 (błędny kod)
+public static int multiplyThrough(List&lt;Integer&gt; linkedListOfNumbers) {
+	return linkedListOfNumbers
+		.stream()
+		.reduce(5, (acc, x) -&gt; x * acc);
+}
+							</code></pre>
 						</ul>
 						
 						<aside class="notes">
+							<p>wywołanie operacji na parallelStream() spowoduje nieoczekiwane rezultaty - błędy w implementacji</p>
 							<p>przetwarzanie sekwencyjne i równoległe powinno produkować ten sam rezultat</p>
+							
+						</aside>
+						
+					</section>
+					
+					<section>
+						<h2>równoległe przetwarzanie (nie) jest darmowe. warunki 2/2</h2>
+						<ul>
+							<li><i>assiociativity constraint</i></li>
+							<pre class="fragment"><code data-trim contenteditable>
+A a1 = supplier.get();
+accumulator.accept(a1, t1);
+accumulator.accept(a1, t2);
+R r1 = finisher.apply(a1);  // result without splitting
+
+A a2 = supplier.get();
+accumulator.accept(a2, t1);
+A a3 = supplier.get();
+accumulator.accept(a3, t2);
+R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
+							</code></pre>
+						</ul>
+						
+						<aside class="notes">
 							<p>dla kolektorów UNORDERED, produkujących kolekcje, rezultaty r1 i r2 są uważane za jednakowe, jeśli fisnished.apply(a1).equals(finished.apply(a2))</p>
 						</aside>
+					</section>
+					
+					<section>
+						<h2>wydajność</h2>
+						<ul>
+							<li>rozmiar kolekcji do przetworzenia</li>
+							<li>rodzaj struktury wejśćiowej (ArrayList, array, IntStream.range (wspierany swododny dostęp). HashSet, TreeSet (balans?). LinkedList, Streams.iterate, BufferedReader.lines (nieznany początkowy rozmiar).</li>
+							<li>"opakowanie"</li>
+							<li>liczba rdzeni</li>
+							<li>kosz/element</li>
+							<li>stateless/stateful</li>
+						</ul>
+						
+						<aside class="notes">
+							<p>dekompozycja kolekcji wejśćiowej wiąże się z narzutem pracy do wykonania
+								łatwość podzielenia problemu
+								typy prymitywne są szybsze niż ich odpowiedniki "boxed" (.mapToInt())
+								liczba dostępnych rdzeni; thread affinity
+								im większy czas spędzony na przetwarzaniu elementu, tym większy zysk ze zrównoleglenia
+								stateless/stateful
+							</p>
+						</aside>
+					</section>
+					
+					<section>
+						<h2>operacje klasy Arrays "since 1.8*"</h2>
+						
+						<ul>
+							<li>parallelSetAll - równolegała inicjalizacja</li>
+							<li>parallelPrefix - równolegle kumuluje wartości tablicy ([2.0, 1.0, 0.0, 3.0] -&gt; [2.0, 3.0, 3.0, 6.0])</li>
+						</ul>
+						
+						<aside class="notes">
+							<p>Because floating-point operations may not be strictly associative, the returned result may not be identical to the value that would be obtained if the operation was performed sequentially.
+							</p>
+						</aside>
+						
 					</section>
 					
 				</section>
