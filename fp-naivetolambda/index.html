@@ -66,31 +66,31 @@
 				</section>
 				 
 				<section>
-					
 					<section>
 						<h2>Najważniejsze operacje</h2>
-						<p>Terminalne:</p>
 						<ul>
-							<li><i>collect(toList())</i></li>
-							<li><i>min()</i> / <i>max()</i></li>
-							<li><i>reduce()</i></li>
-						</ul>
-						
-						<p>Nieterminalne:</p>
-						<ul>
-							<li><i>map()</i></li>
-							<li><i>filter()</i></li>
+							<p>Terminalne:</p>
+								<li><i>collect(toList())</i></li>
+								<li><i>min()</i> / <i>max()</i></li>
+								<li><i>reduce()</i></li>
+							<p>Nieterminalne:</p>
+								<li><i>map()</i></li>
+								<li><i>filter()</i></li>
 						</ul>
 						
 						<aside class="notes">
 							<p>operacje terminalne (eager) i nieterminalne (lazy)</p>
 						</aside>
+						
 					</section>
+				</section>
+				
+				<section>
 					
 					<section>
-						<h2>Collector</h2>
+						<h2>Collector&lt;T,A,R&gt;</h2>
 						<ul>
-							<li class="fragment">wykorzystywany przy operacjach redukcji</li>
+							<li>wykorzystywany przy operacjach redukcji</li>
 							<li class="fragment">klasa Collectors; toList(), toSet(), toCollection()</li>
 							<li class="fragment">akumulacja elementów do kolekcji, konkatenacja stringów, suma, min...</li>
 						</ul>
@@ -106,7 +106,7 @@
 					</section>
 					
 					<section>
-						<h2>Collector&lt;A,T,R&gt;</h2>
+						<h2>Collector&lt;T,A,R&gt;</h2>
 						<p>T - typ elementów strumienia</p>
 						<p>A - akumulator</p>
 						<p>R - rezultat redukcji</p>
@@ -119,7 +119,7 @@
 					</section>
 					
 					<section>
-						<h2>Collector; określony przez funkcje oraz charakterystyki:</h2>
+						<h2>interfejs</h2>
 						<ul>
 							<li>supplier() - tworzy result container</li>
 							<li>accumulator() - dodaje element do result container'a</li>
@@ -136,6 +136,12 @@
 						</aside>
 					</section>
 					
+					<section>
+						<!-- tutaj prezentacja kodu -->
+					</section>
+				</section>
+				
+				<section>
 					<section>
 						<h2>współbieżność a zrównoleglenie</h2>
 						<ul>
@@ -167,13 +173,12 @@
 							nie każde wywołanie .stream() warto wymienić na .parallelStream() - wydajność!
 							rozmiar kolekcji do przetworzenia to nie jedyny czynnik który należy wiąć pod uwagę</span>
 						</aside>
-						
-						
 					</section>
+				</section>
 					
-					
+				<section>
 					<section>
-						<h2></h2>
+						<h2>Operacja redukcji</h2>
 						<ul>
 							<li>redukcja sekwencyjna -> jeden result container</li>
 							<li>redukcja równoległa -> wiele result containerów</li>
@@ -189,7 +194,7 @@
 					</section>
 					
 					<section>
-						<h2>równoległe przetwarzanie (nie) jest darmowe. warunki 1/2</h2>
+						<h2>równoległa redukcja; warunki 1/2</h2>
 						<ul>
 							<li class="fragment"><i>identity constraint</i></li>
 							<span  class="fragment" >combiner.apply(a, supplier.get()).</span>
@@ -212,7 +217,7 @@ public static int multiplyThrough(List&lt;Integer&gt; linkedListOfNumbers) {
 					</section>
 					
 					<section>
-						<h2>równoległe przetwarzanie (nie) jest darmowe. warunki 2/2</h2>
+						<h2>równoległa redukcja; warunki 2/2</h2>
 						<ul>
 							<li><i>assiociativity constraint</i></li>
 							<pre class="fragment"><code data-trim contenteditable>
@@ -233,9 +238,17 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 							<p>dla kolektorów UNORDERED, produkujących kolekcje, rezultaty r1 i r2 są uważane za jednakowe, jeśli fisnished.apply(a1).equals(finished.apply(a2))</p>
 						</aside>
 					</section>
+				</section>
+					
+				<section>
 					
 					<section>
-						<h2>wydajność</h2>
+						<h2>'going parallel'</h2>
+						<p>przed zrefaktoryzowaniem kodu i bezkrytycznym zastosowaniem .parallelSteram() warto się zastanowić... </p>
+					</section>
+					
+					<section>
+						<h2>czynniki do rozważenia</h2>
 						<ul>
 							<li>rozmiar kolekcji do przetworzenia</li>
 							<li>rodzaj struktury wejśćiowej (ArrayList, array, IntStream.range (wspierany swododny dostęp). HashSet, TreeSet (balans?). LinkedList, Streams.iterate, BufferedReader.lines (nieznany początkowy rozmiar).</li>
@@ -255,7 +268,22 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 							</p>
 						</aside>
 					</section>
-					
+				</section>
+				
+				
+				<section>
+					<section>
+						<h2>debugowanie</h2>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h2>testowanie</h2>
+					</section>
+				</section>
+				
+				<section>
 					<section>
 						<h2>operacje klasy Arrays "since 1.8*"</h2>
 						
@@ -275,443 +303,10 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 				
 				<section>
 					<section>
-						<h2>Java 8 - kolejne zmiany?</h2>
-						<ul>
-							<li>1996 - Java 1.0</li>
-							<li>1998 - wielordzeniowe CPU (IBM Power3)</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Java 1.0</h2>
-						<p>łatwiejszy w utrzymaniu kod, skupienie się na logice</p>
-						<aside class="notes">Wersja 1.0 Javy wyszła w roku '96, od tego czasu sporo się zmieniło. Programiści mając do dyspozycji możliwości JVM mogli skupić się na logice biznesowej, pisaniu kodu czytelnego i łatwiejszego w utrzymaniu i nieco zapomnieć o technicznych aspektach kodu, wydajności itp.
-						</aside>
-					</section>
-					<section>
-						<h2>wsparcie wielowątkowości</h2>
-						<p><code>java.util.concurrent</code></p>
-						<aside class="notes">
-							<ul>
-								<li>Pojawienie się wielordzeniowych CPU nieco komplikowało sytuację, ponieważ kodowanie algorytmów działających m.in. na lockach jest czasochłonne i łatwo popełanić błędy.</li>
-								<li>Java.util.concurrent – package, w którym znajdowały się klasy ułatwijące pisanie kodu, który dobrze zachowa się na wielordzeniowych maszynach (i je wykorzysta)</li>
-							</ul>
-						</aside>
 					</section>
 				</section>
+	
 
-                <section>
-                    <section>
-                        <h2>Java 8 - nowości</h2>
-                        <ul>
-                            <li>język
-                                <ul>
-                                    <li>lambda expressions</li>
-                                    <li>functional interfaces</li>
-                                    <li>type inference *</li>
-                                    <li>method references</li>
-                                    <li>default methods</li>
-                                </ul>
-                            </li>
-                            <li>kolekcje
-                                <ul>
-                                    <li><code>java.util.stream</code></li>
-                                </ul>
-                            </li>
-                            <li>i wiele innych ...</li>
-                        </ul>
-
-                        <aside class="notes">
-                            <ul>
-                                <li>Przykładem na pewne braki w poziomie abstakcji który umożliwiały poprzednie wersje Javy jest wydaje (równoległe) przetwarzanie danych w kolekcjach.</li>
-                                <li>Wproawdzając małe zmiany w kodzie, Java 8 potrafi wydajnie uruchomić program przetwarzający kolekcje na środowisku multicore CPU. LAMBDA EXPRESSIONS</li>
-                                <li>Abstrakcje to koncept obecny w programowaniu obiektowym. OO → abstrakcje danych, FP → abstrakcje zachowań.</li>
-                                <li>Zalety wykorzystania abstrakcji: łatwiejsze utrzymanie, większa czytelność, mniejsza podatność na błędy. </li>
-                            </ul>
-                        </aside>
-                    </section>
-                </section>
-                <section>
-                    <section>
-                        <h2>lambda expressions</h2>
-                            <ul>
-                                <li>kompaktowy sposób na opisywanie zachowania</li>
-                                <li class="fragment">sposób na nieczytelne <i>code as data</i>					
-                                    <pre><code data-trim contenteditable>
-button
-    .addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("clicked!");
-        }
-    });
-                                    </code></pre>
-                                <span class="fragment">rozwiązanie:					
-                                    <pre><code data-trim contenteditable>
-button
-    .addActionListener(e -> System.out.println("clicked!"));
-                                    </code></pre>
-                                </span>
-                                </li>
-                            </ul>
-                        <aside class="notes">
-                            <ul>
-                                <li><i>boilerplate code</i></li>
-                                <li>obiekt reprezentujący akcję vs blok kodu</li>
-                                <li>type inference - dedukcja typu (<code>javac</code>) na podstawie kontekstu (tutaj <code>.addActionListener()</code></li>
-                            </ul>
-                        </aside>
-                    </section>
-                    <section>
-                        <h2>lambda expressions - warianty</h2>
-                            
-                            <pre class="fragment"><code data-trim contenteditable>
-Runnable noArguments = () -> System.out.println("Hello World");
-                            </code></pre>
-                            <pre class="fragment"><code data-trim contenteditable>
-ActionListener oneArgument = event -> System.out.println("button clicked");
-                            </code></pre>
-                            <pre class="fragment"><code data-trim contenteditable>
-Runnable multiStatement = () -&gt; { 
-	System.out.print("Hello");
-	System.out.println(" World");
-};
-                            </code></pre>
-                            <pre class="fragment"><code data-trim contenteditable>
-BinaryOperator&lt;Long&gt; add = (x, y) -&gt; x + y;
-                            </code></pre>
-                            <pre class="fragment"><code data-trim contenteditable>
-BinaryOperator&lt;Long&gt; addExplicit = (Long x, Long y) -> x + y;
-                            </code></pre>
-                        
-                        
-                    <aside class="notes">
-                    <ul>
-                        <li>blok kodu obowiązują standardowe reguły; return / throw</li>
-                        <li>także jednolinikowe wyrażenie można ubrać w nawiasy {}</li>
-                        <li>trzeci przykład to nie kod dodający dwie liczby, a funkcja dodająca dwie liczby</li>
-                        <li>możliwość podania typu explicite - wymusza konieczność nawiasów ()</li>
-                        <li>type inference nie jest czymś nowym</li>
-                    </ul>    
-                    </aside>
-                    </section>
-                    
-                    <section>
-                        <h2>lambda expressions - zmienne</h2>
-                        <ul>
-                            <li class="fragment">zmienna lokalna nie musi być zadeklarowana <code>final</code></li>
-                            <li class="fragment">jest to różnica w porównaniu do <i>klas anonimowych</i></li>
-                            <pre class="fragment"><code>
-final String name = getUserName();
-button.addActionListener(new ActionListener() {
-	public void actionPerformed(ActionEvent event) {
-		System.out.println("hi " + name);
-	}
-});                            
-                            </code></pre>
-                            <li class="fragment">użyta zmienna musi być natomiast <i>efektywnie finalna</i></li>
-                            <pre class="fragment"><code>
-String name = getUserName();
-button.addActionListener(event -> System.out.println("hi " + name));
-                            </code></pre>
-                        </ul>
-                    </section>
-                </section>
-                <section>
-                    <section>
-                        <h2>functional interfaces</h2>
-                        <ul>
-                            <li>interfejs z jedną (abstrakcyjną) metodą, używany jako typ wyrażenia <i>LE</i></li>
-                            <li class="fragment"><i>@FunctionalInterface</i></li>
-                        </ul>
-                    </section>
-                    
-                    <section>
-                        <h2>functional interfaces</h2>
-                        <ul>
-                            <li>pakiet <code>java.util.function</code></li>
-                        </ul>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Interfejs</th>
-                                    <th>Argumenty</th>
-                                    <th>Typ zwracany</th>
-                                    <th>Przykład</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Predicate&lt;T&gt;</td>
-                                    <td>T</td>
-                                    <td>boolean</td>
-                                    <td><small>czy spełniono warunek</small></td>
-                                </tr>
-                                <tr>
-                                    <td>Consumer&lt;T&gt;</td>
-                                    <td>T</td>
-                                    <td>void</td>
-                                    <td><small>drukowanie wartości</small></td>
-                                </tr>
-                                <tr>
-                                    <td>Function&lt;T,R&gt;</td>
-                                    <td>T</td>
-                                    <td>R</td>
-                                    <td><small>pobieranie wartości z obiektu</small></td>
-                                </tr>
-                                <tr>
-                                    <td>Supplier&lt;T&gt;</td>
-                                    <td></td>
-                                    <td>T</td>
-                                    <td><small>metoda fabryki</small></td>
-                                </tr>
-                                <tr>
-                                    <td>UnaryOperator&lt;T&gt;</td>
-                                    <td>T</td>
-                                    <td>T</td>
-                                    <td><small>logiczna negacja</small></td>
-                                </tr>
-                                <tr>
-                                    <td>BinaryOperator&lt;T&gt;</td>
-                                    <td>(T,T)</td>
-                                    <td>T</td>
-                                    <td><small>operacja na liczbach</small></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-                </section>
-                <section>
-                    <section>
-                        <h2>type inference</h2>
-                            <ul>
-                                <li class="fragment">mechanizm umożliwiający dedukcję typów</li>
-                                <li class="fragment">wprowadzaony w wersji 7 Javy</li>
-                                <pre class="fragment"><code>
-Map&lt;String, Integer&gt; oldWordCounts = new HashMap&lt;String, Integer&gt;(); 
-Map&lt;String, Integer&gt; diamondWordCounts = new HashMap&lt;&gt;();
-                                </code></pre>
-                                <li class="fragment">rozszerzony w Javie 8</li>
-                                <pre class="fragment"><code>
-useHashmap(new HashMap&lt;&gt;());
-                                </code></pre>
-                            </ul>
-                    </section>
-                    <section>
-                        <h2>type inference</h2>
-                            <ul>
-                                <pre class="fragment"><code>
-Predicate&lt;Integer&gt; atLeast5 = x -> x > 5;
-                                </code></pre>
-                                <pre class="fragment"><code>
-BinaryOperator&lt;Long&gt; addLongs = (x, y) -> x + y;
-                                </code></pre>
-                                <pre class="fragment"><code>
-BinaryOperator addLongs = (x, y) -> x + y;
-                                </code></pre>
-                            </ul>
-                    </section>
-                </section>
-                
-                <section>                
-                    <section>
-                        <h2>method references</h2>
-                            <ul>
-                                <li>wyrażenia lambda dla metod mających już nazwę</li>
-                            </ul>
-                        
-                    <aside class="notes">
-                        <ul>
-                            <li>używane, gdy wyrażenie lambda nie robi nic poza zawołaniem istniejącej metody</li>
-                        </ul>    
-                    </aside>
-                    </section>
-                    <section>
-                        <h2>domena problemu:</h2>
-                        <pre><code>
-public class Person {
-
-	public enum Sex {
-		MALE, FEMALE
-	}
-
-	String name;
-	LocalDate birthday;
-	Sex gender;
-	String emailAddress;
-
-	public int getAge() {
-        // ...
-	}
-
-	public Calendar getBirthday() {
-		return birthday;
-	}    
-
-	public static int compareByAge(Person a, Person b) {
-		return a.birthday.compareTo(b.birthday);
-	}
-}
-                    </code></pre>
-                    </section>
-                    <section>
-                        <h3>zadanie - wyświetlenie osób posortowanych wg danego kryterium</h3>
-                        <pre><code>
-Person[] rosterAsArray = roster.toArray(new Person[roster.size()]);
-
-class PersonAgeComparator implements Comparator&lt;Person&gt; {
-    public int compare(Person a, Person b) {
-        return a.getBirthday().compareTo(b.getBirthday());
-    }
-}
-        
-Arrays.sort(rosterAsArray, new PersonAgeComparator());
-                    </code></pre>
-                    </section>
-                    <section>
-                        <h3>sygnatura wołanej metody <i>sort()</i></h3>
-                        <pre><code>
-static &lt;T&gt; void sort(T[] a, Comparator&lt;? super T&gt; c)
-                    </code></pre>
-                        <h3 class="fragment">Comparator jest anotowany jako <i>@FunctionalInterface</i></h3>
-                    </section>
-                    <section>
-                        <h3>wykorzystanie lambda expression</h3>
-                        <pre><code>
-Arrays.sort(rosterAsArray,
-    (Person a, Person b) -> {
-        return a.getBirthday().compareTo(b.getBirthday());
-    }
-);
-                    </code></pre>
-                    </section>
-                    <section>
-                        <h3>wykorzystanie istniejącej metody</h3>
-                        <pre><code>
-Arrays.sort(rosterAsArray,
-    (a, b) -> Person.compareByAge(a, b)
-);
-                    </code></pre>
-                    </section>
-                    <section>
-                        <h3>wykorzystanie referencji do metody</h3>
-                        <pre><code>
-Arrays.sort(rosterAsArray, Person::compareByAge);
-                    </code></pre>
-                    </section>
-                    
-                    <section>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Rodzaj referencji</th>
-                                    <th>Przykład</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>do statycznej metody</td>
-                                    <td><medium>ContainingClass::staticMethodName</medium></td>
-                                </tr>
-                                <tr>
-                                    <td>do metody instancji</td>
-                                    <td><medium>containingObject::instanceMethodName</medium></td>
-                                </tr>
-                                <tr>
-                                    <td>do metody typu</td>
-                                    <td><medium>ContainingType::methodName</medium></td>
-                                </tr>
-                                <tr>
-                                    <td>do konstruktora</td>
-                                    <td><medium>ClassName::new</medium></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-                             
-
-                </section>
-                
-                <section>
-                     <section>
-                        <h2>default methods</h2>
-                        <ul>
-                            <li class="fragment">umożliwiają rozszerzenie interfejsów zapewniając kompatybilność z kodem napisanym dla ich starszych wersji</li>
-                            <li class="fragment"><code>default</code></li>
-                            <li class="fragment">mogą zostać zadeklarowane ponownie</li>
-                            <li class="fragment">mogą zostać nadpisane</li>
-                            <li class="fragment">przykład: <i>stream()</i></li>
-                        </ul>
-                    </section>
-                </section>
-				
-				<section>
-					<section>
-						<h2>Stream API</h2>
-							<ul>
-								<li class="fragment">wspiera programowanie funkcyjne na strumieniach</li>
-								<li class="fragment">korzysta z możliwości przedstawionych wcześniej, np. <i>default methods</i></li>
-								<li class="fragment">umożliwia zrównoleglenie operacji <br><i>Collections.stream()</i> vs <i>Collections.parallelStream()</i></li>
-							</ul>
-					</section>
-					
-					<section>
-						<h2>Stream API - wsparcie <i>FP</i></h2>
-							<ul>
-								<li class="fragment">ukrywa iterację po kolekcji</li>
-								<div>
-								    <div class="fragment" style="width:400px;float:left;display:inline-block;">
-									<img height="300" width="100%" data-src="img/external_iteration_alpha.png" alt="Zewnętrzna iteracja" style="border: 1px">
-								    </div>
-								    <div class="fragment" style="margin-left:400px;">
-									<img height="300" data-src="img/internal_iteration_alpha.png" alt="Wewnętrzna iteracja" style="border: 1px">
-								    </div>
-								</div>
-							</ul>
-					</section>
-					
-					
-					<section>
-						<h2>Cechy strumienia</h2>
-							<ul>
-								<li class="fragment">może mieć nieskończony rozmiar</li>
-								<li class="fragment">moze być trawersowany tylko raz <small><code>java.lang.IllegalStateException: 
-  stream has already been operated upon or closed</code></small></li>
-								<li class="fragment">jest nastawiony na przetwarzanie a nie na przechowywanie elementów</i></li>
-							</ul>
-					</section>
-					<section>
-						<h2>Najważniejsze operacje</h2>
-							<ul>
-								<li><i>collect(toList())</i></li>
-								<li><i>map()</i></li>
-								<li><i>filter()</i></li>
-								<li><i>flatMap()</i></li>
-								<li><i>min()</i> / <i>max()</i></li>
-								<li><i>reduce()</i></li>
-							</ul>
-					</section>
-						<section>
-						<h2>Popełniane błędy</h2>
-							<ul>
-								<li class="fragment">implementowanie w stylu FP bez znajomości semantyki</li>
-								<li class="fragment">nieużywanie <i>Stream API</i></li>
-								<li class="fragment">używanie zbyt często operacji terminujących</li>
-								<li class="fragment">przypadkowe tworzenie nieskończonych strumieni</li>
-								<li class="fragment">wyknowyniae opreacji w niepwraidłewoj koeljonści
-								<a href="http://dev.mysql.com/doc/refman/5.0/en/select.html">MySQL SELECT syntax</a></li>
-								<li class="fragment">zapominanie o operacjach terminalnych</li>
-							</ul>
-					</section>
-				</section>
-				
-				<section style="text-align: left;">
-					<h2>Czy powinienem programować funkcyjnie?</h2>
-					<h3 class="fragment"><br> - niekoniecznie</h3>
-					
-					<aside class="notes">
-					</aside>
-					
-				</section>
-				
 				<section style="text-align: left;">
 					<h1>dziękuję</h1>
 					Odnośniki:
