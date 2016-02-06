@@ -1,4 +1,4 @@
-package com.pgssoftware.exercises.Logger.MyMath;
+package com.pgssoftware.exercises.MyMath;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
