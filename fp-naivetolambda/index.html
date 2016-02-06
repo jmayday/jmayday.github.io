@@ -45,7 +45,7 @@
 					<h2>Programowanie funkcyjne</h2>
 					<span class="fragment">
 					<h3>Stream API</h3>
-					<h3>refaktoryzacja do lambdy</h3>
+					<h3>refaktoryzacja do lambdy. przykłady i pułapki.</h3>
 					</span>
 					<p>
 						<small>Jakub Madej. 13 lutego 2016.</small>
@@ -84,7 +84,7 @@
 						<ul>
 							<p>Terminalne:</p>
 								<li><i>collect(toList())</i></li>
-								<li><i>min()</i> / <i>max()</i></li>
+								<li><i>min()</i> / <i>max(), sum()</i></li>
 								<li><i>reduce()</i></li>
 							<p>Nieterminalne:</p>
 								<li><i>map()</i></li>
@@ -96,6 +96,18 @@
 						</aside>
 						
 					</section>
+					
+					<section>
+						<h2>przykład 01 - <i>lazy</i></h2>
+						<p>miejsce na przykład z logowaniem</p>
+					</section>
+					
+					<section>
+						<h2>przykład 02 - ponowne użycie kodu z lambdą</h2>
+						<p><i>miejsce na przykład z wykorzystaniem <code>.sum()</code></i></p>
+					</section>
+					
+					
 				</section>
 				
 				<section>
@@ -190,6 +202,13 @@
 				</section>
 					
 				<section>
+					
+					<section>
+						<h2>Operacja redukcji - przykład 03</h2>
+						<p>miejsce na przykład z wykonaniem równoległem redukcji</p>
+					</section>
+					
+					
 					<section>
 						<h2>Operacja redukcji</h2>
 						<ul>
@@ -287,6 +306,12 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 				<section>
 					<section>
 						<h2>debugowanie</h2>
+						<p><code>peek()</code></p>
+						
+						<aside class="notes">
+							<p>możliwe, że metoda z pustym ciałem nie zostanie uruchomiona, można użyć zapisau 1:1; e-%gt;e</p>
+						</aside>
+						
 					</section>
 				</section>
 				
