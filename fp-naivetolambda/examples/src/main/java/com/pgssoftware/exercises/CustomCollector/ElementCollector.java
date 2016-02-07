@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pgssoftware.exercises;
+package com.pgssoftware.exercises.CustomCollector;
 
+import com.pgssoftware.exercises.CustomCollector.ElementCombiner;
 import java.math.BigDecimal;
 import java.util.AbstractMap;
 import java.util.HashSet;

@@ -4,16 +4,15 @@
  * and open the template in the editor.
  */
 
-import com.pgssoftware.exercises.Element;
-import com.pgssoftware.exercises.ElementCollector;
+import com.pgssoftware.exercises.CustomCollector.Element;
+import com.pgssoftware.exercises.CustomCollector.ElementCollector;
 import java.math.BigDecimal;
-import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.HashMap;
 import java.util.Map;
 import static java.util.stream.Collectors.groupingBy;
 import java.util.stream.Stream;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -43,24 +42,23 @@ public class ElementCollectorTest {
         
         Map<Integer, Element> collect1 = (Map<Integer, Element>)Stream.of(
                 jobs
-                        .entrySet()
-                        .stream()
-                        .map(e -> new AbstractMap.SimpleEntry<String, AbstractMap.SimpleEntry<Integer, BigDecimal>>("jobs", new AbstractMap.SimpleEntry(e))),
+                    .entrySet()
+                    .stream()
+                    .map(e -> new SimpleEntry<String, SimpleEntry<Integer, BigDecimal>>("jobs", new SimpleEntry(e))),
                 maintenance
-                        .entrySet()
-                        .stream()
-                        .map(e -> new AbstractMap.SimpleEntry<String, AbstractMap.SimpleEntry<Integer, BigDecimal>>("maintenance", new AbstractMap.SimpleEntry(e))),
+                    .entrySet()
+                    .stream()
+                    .map(e -> new SimpleEntry<String, SimpleEntry<Integer, BigDecimal>>("maintenance", new SimpleEntry(e))),
                 service
-                        .entrySet()
-                        .stream()
-                        .map(e -> new AbstractMap.SimpleEntry<String, AbstractMap.SimpleEntry<Integer, BigDecimal>>("service", new AbstractMap.SimpleEntry(e)))
-        )       
-                
-                .flatMap(f -> f)
-                .collect(
-                        groupingBy(e -> e.getValue().getKey(),
-                                new ElementCollector())
-                );
+                    .entrySet()
+                    .stream()
+                    .map(e -> new SimpleEntry<String, SimpleEntry<Integer, BigDecimal>>("service", new SimpleEntry(e)))
+        )             
+        .flatMap(f -> f)
+        .collect(
+                groupingBy(e -> e.getValue().getKey(),
+                        new ElementCollector())
+        );
         
         
         System.out.println(collect1);

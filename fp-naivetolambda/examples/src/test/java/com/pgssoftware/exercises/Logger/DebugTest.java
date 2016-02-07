@@ -6,7 +6,7 @@ package com.pgssoftware.exercises.Logger;
  * and open the template in the editor.
  */
 
-import com.pgssoftware.exercises.Logger.Logger;
+import com.pgssoftware.exercises.Logger.LoggerLambdaEnabled;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -26,7 +26,7 @@ public class DebugTest {
     
     @Test
     public void shouldPerformLoggingInDebugMode() {
-        Logger logger = new Logger(true);
+        LoggerLambdaEnabled logger = new LoggerLambdaEnabled(true);
 
         logger.debug(() -> "External service called: " + getDebugInfoTimeConsuming());
         verify(externalService).getSymbols();
@@ -35,7 +35,7 @@ public class DebugTest {
     
     @Test
     public void shouldNotPerformLoggingInNonDebugMode() {
-        Logger logger = new Logger(false);
+        LoggerLambdaEnabled logger = new LoggerLambdaEnabled(false);
 
         logger.debug(() -> "External service called: " + getDebugInfoTimeConsuming());
         verify(externalService, never()).getSymbols();

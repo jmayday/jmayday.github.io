@@ -9,7 +9,7 @@ package com.pgssoftware.exercises.Logger;
  *
  * @author kuba
  */
-public class NaiveLogger {
+public class LoggerNaive {
     
     private boolean debug = false;
 
@@ -17,7 +17,7 @@ public class NaiveLogger {
         return debug;
     }
     
-    public NaiveLogger(boolean isDebug) {
+    public LoggerNaive(boolean isDebug) {
         this.debug = isDebug;
     }
     

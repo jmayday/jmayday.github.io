@@ -7,9 +7,9 @@ package com.pgssoftware.exercises.Logger;
 
 import java.util.function.Supplier;
 
-public class Logger {
+public class LoggerLambdaEnabled {
 
-    public Logger(boolean isDebug) {
+    public LoggerLambdaEnabled(boolean isDebug) {
         this.isDebug = isDebug;
     }
 

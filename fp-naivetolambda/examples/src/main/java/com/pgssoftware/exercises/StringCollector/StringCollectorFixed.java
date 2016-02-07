@@ -5,59 +5,53 @@
  */
 package com.pgssoftware.exercises.StringCollector;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.function.Supplier; 
 import java.util.stream.Collector;
 
 /**
  *
  * @author kuba
  */
-public class StringCollector implements Collector<String, StringCombiner, String> {
+public class StringCollectorFixed implements Collector<String, StringCombinerFixed, String> {
 
     private final String delim;
     private final String prefix;
     private final String suffix;
 
-    public StringCollector(String delim, String prefix, String suffix) {
+    public StringCollectorFixed(String delim, String prefix, String suffix) {
         this.delim = delim;
         this.prefix = prefix;
         this.suffix = suffix;
     }
    
     @Override
-    public Supplier<StringCombiner> supplier() {
-        System.out.println("supplier called");
-        return () -> new StringCombiner(delim, prefix, suffix);
+    public Supplier<StringCombinerFixed> supplier() {
+        return () -> new StringCombinerFixed(delim, prefix, suffix);
     }
 
     @Override
-    public BiConsumer<StringCombiner, String> accumulator() {
-        return StringCombiner::add;
+    public BiConsumer<StringCombinerFixed, String> accumulator() {
+        return StringCombinerFixed::add;
     }
 
     @Override
-    public BinaryOperator<StringCombiner> combiner() {
-        return StringCombiner::merge;
+    public BinaryOperator<StringCombinerFixed> combiner() {
+        return StringCombinerFixed::merge;
     }
 
     @Override
-    public Function<StringCombiner, String> finisher() {
-        return StringCombiner::toString;
+    public Function<StringCombinerFixed, String> finisher() {
+        return StringCombinerFixed::toString;
     }
 
     @Override
     public Set<Characteristics> characteristics() {
-        return Sets.newHashSet(/*Characteristics.CONCURRENT, Characteristics.UNORDERED*/);
+        return Sets.newHashSet();
     }
 
-
-    
 }

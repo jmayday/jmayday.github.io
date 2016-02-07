@@ -9,21 +9,21 @@ package com.pgssoftware.exercises.StringCollector;
  *
  * @author kuba
  */
-public class StringCombiner {
+public class StringCombinerBuggy {
 
     StringBuilder builder;
     private final String delim;
     private final String prefix;
     private final String suffix;
 
-    public StringCombiner(String delim, String prefix, String suffix) {
+    public StringCombinerBuggy(String delim, String prefix, String suffix) {
         this.delim = delim;
         this.prefix = prefix;
         this.suffix = suffix;
         builder = new StringBuilder();
     }
 
-    public StringCombiner add(String element) {
+    public StringCombinerBuggy add(String element) {
         if (areAtStart()) {
             builder.append(prefix);
         } else {
@@ -33,17 +33,8 @@ public class StringCombiner {
         return this;
     }
 
-    public StringCombiner merge(StringCombiner other) {
-        if (other.builder.length() > 0) {
-            if (areAtStart()) {
-                builder.append(prefix);
-            } else {
-                builder.append(delim);
-            }
-            builder.append(other.builder, prefix.length(), other.builder.length());
-        }
-        
-        //builder.append(other.builder, prefix.length(), other.builder.length());
+    public StringCombinerBuggy merge(StringCombinerBuggy other) {
+        builder.append(other.builder);
         return this;
     }
 

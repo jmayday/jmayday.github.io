@@ -1,7 +1,7 @@
 
 import com.google.common.collect.Lists;
-import com.pgssoftware.exercises.Element;
-import com.pgssoftware.exercises.ElementCollector;
+import com.pgssoftware.exercises.CustomCollector.Element;
+import com.pgssoftware.exercises.CustomCollector.ElementCollector;
 import edu.emory.mathcs.backport.java.util.Collections;
 import java.math.BigDecimal;
 import java.time.Instant;

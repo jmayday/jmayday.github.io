@@ -5,7 +5,7 @@
  */
 package com.pgssoftware.exercises;
 
-import com.pgssoftware.exercises.StringCollector.StringCollector;
+import com.pgssoftware.exercises.StringCollector.StringCollectorFixed;
 import com.pgssoftware.Album;
 import static java.util.Arrays.asList;
 import java.util.List;
@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
+import static java.util.stream.Collectors.groupingBy;
 
 /**
  *
@@ -91,7 +92,7 @@ Album a1 = Album
         String collect = albums
                 .stream()
                 .map((Album a) -> a.name)
-                .collect(new StringCollector(",", "[", "]"));
+                .collect(new StringCollectorFixed(",", "[", "]"));
         
         String b = "asdf";
         
@@ -126,7 +127,7 @@ Album a1 = Album
         String collect = albums
                 .stream()
                 .map((Album a) -> a.name)
-                .collect(new StringCollector(",", "[", "]"));
+                .collect(new StringCollectorFixed(",", "[", "]"));
         
         
         return albums

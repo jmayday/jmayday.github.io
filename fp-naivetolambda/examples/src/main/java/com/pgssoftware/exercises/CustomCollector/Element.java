@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pgssoftware.exercises;
+package com.pgssoftware.exercises.CustomCollector;
 
 import java.math.BigDecimal;
 
