@@ -6,8 +6,13 @@
 package com.pgssoftware.exercises.Order;
 
 import com.pgssoftware.Album;
+import static java.util.Comparator.comparing;
 import java.util.List;
+import java.util.TreeMap;
 import java.util.function.ToLongFunction;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
+import static java.util.stream.Collectors.toList;
 
 /**
  *
@@ -43,6 +48,18 @@ public class LambdaEnabledOrder {
 
     public long countTracks() {
         return count(a -> a.tracks.stream().count());
+    }
+    
+    public static TreeMap<String, List<String>> getAlbumsSummary(List<Album> albums) {
+        
+        return albums
+                .stream()
+                .sorted(comparing((Album a) -> a.musician).thenComparing((Album a) -> a.year).reversed())
+                .collect(groupingBy(
+                        (Album a) -> a.musician,
+                        TreeMap::new,
+                        mapping((Album e) -> String.format("%s - %s", e.name, e.year), toList())
+                ));
     }
   
 }
