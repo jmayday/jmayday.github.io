@@ -1,9 +1,9 @@
+package com.pgssoftware.exercises.MyStringUtils;
 
-import com.pgssoftware.exercises.MyUtils;
+
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Map;
-import java.util.stream.Collectors;
-import static java.util.stream.Collectors.counting;
-import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -22,10 +22,9 @@ public class GetCardinalityTest {
     
     @Test
     public void shouldCountEntries() {
-        Stream<String> names = Stream.of("John", "Paul", "George", "John",
-                "Paul", "John");
+        Collection<String> names = Arrays.asList("John", "Paul", "George", "John", "Paul", "John");
 
-        Map<String, Long> cardinality = MyUtils.getCardinality(names);
+        Map<String, Long> cardinality = MyStringUtils.getCardinality(names);
         
         Assertions.assertThat(cardinality).containsEntry("John", 3L);
         Assertions.assertThat(cardinality).containsEntry("Paul", 2L);
