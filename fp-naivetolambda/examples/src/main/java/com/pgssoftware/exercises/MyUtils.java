@@ -8,9 +8,8 @@ package com.pgssoftware.exercises;
 import java.util.Map;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.counting;
-import java.util.stream.Stream;
+import java.util.stream.Stream; 
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.plexus.util.CollectionUtils;
 
 /**
  *

@@ -10,16 +10,11 @@ import com.pgssoftware.Album;
 import static java.util.Arrays.asList;
 import java.util.List;
 import java.util.Map;
-import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
 import static java.util.Comparator.*;
 import java.util.HashMap;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
-
-import java.util.stream.Stream;
-import org.apache.commons.lang3.StringUtils;
 import static java.util.stream.Collectors.groupingBy;
 
 /**

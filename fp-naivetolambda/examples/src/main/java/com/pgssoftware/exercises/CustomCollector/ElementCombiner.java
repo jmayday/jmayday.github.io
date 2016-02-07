@@ -15,26 +15,25 @@ import org.apache.commons.lang3.ObjectUtils;
  */
 public class ElementCombiner {
 
-    private Element element;
+    private FormElement element;
 
-    public Element getElement() {
+    public FormElement getElement() {
         return element;
     }
 
     public ElementCombiner() {
-        System.out.println("new combiner executed");
-        this.element = new Element();
+        this.element = new FormElement();
     }
 
-    public ElementCombiner add(AbstractMap.SimpleEntry<String, AbstractMap.SimpleEntry<Integer, BigDecimal>> element) {
+    public ElementCombiner add(AbstractMap.SimpleEntry<Type, AbstractMap.SimpleEntry<Integer, BigDecimal>> element) {
         switch (element.getKey()) {
-            case "jobs":
+            case JOBS:
                 this.element.setJobs(element.getValue().getValue());
                 break;
-            case "maintenance":
+            case MAINTENANCE:
                 this.element.setMaintenance(element.getValue().getValue());
                 break;
-            case "service":
+            case SERVICE:
                 this.element.setService(element.getValue().getValue());
                 break;
             default:
@@ -45,7 +44,6 @@ public class ElementCombiner {
     }
 
     public ElementCombiner merge(ElementCombiner combiner) {
-        System.out.println("merged called");
         this.element.setJobs(ObjectUtils.firstNonNull(this.element.getJobs(), combiner.element.getJobs()));
         this.element.setMaintenance(ObjectUtils.firstNonNull(this.element.getMaintenance(), combiner.element.getMaintenance()));
         this.element.setService(ObjectUtils.firstNonNull(this.element.getService(), combiner.element.getService()));

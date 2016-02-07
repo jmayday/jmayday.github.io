@@ -5,9 +5,9 @@
  */
 package com.pgssoftware.exercises.CustomCollector;
 
-import com.pgssoftware.exercises.CustomCollector.ElementCombiner;
 import java.math.BigDecimal;
 import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.BiConsumer;
@@ -21,35 +21,30 @@ import java.util.stream.Collector;
  * @author kuba
  */
 public class ElementCollector
-        implements Collector<AbstractMap.SimpleEntry<String, AbstractMap.SimpleEntry<Integer, BigDecimal>>, ElementCombiner, Element> {
+        implements Collector<SimpleEntry<Type, SimpleEntry<Integer, BigDecimal>>, ElementCombiner, FormElement> {
 
     @Override
     public Supplier<ElementCombiner> supplier() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return () -> new ElementCombiner();
     }
 
     @Override
-    public BiConsumer<ElementCombiner, AbstractMap.SimpleEntry<String, AbstractMap.SimpleEntry<Integer, BigDecimal>>> accumulator() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public BiConsumer<ElementCombiner, AbstractMap.SimpleEntry<Type, AbstractMap.SimpleEntry<Integer, BigDecimal>>> accumulator() {
         return ElementCombiner::add;
     }
 
     @Override
     public BinaryOperator<ElementCombiner> combiner() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return ElementCombiner::merge;
     }
 
     @Override
-    public Function<ElementCombiner, Element> finisher() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Function<ElementCombiner, FormElement> finisher() {
         return ElementCombiner::getElement;
     }
 
     @Override
     public Set<Characteristics> characteristics() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return new HashSet<>();
     }
 

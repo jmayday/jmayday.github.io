@@ -1,22 +1,15 @@
 
-import com.google.common.collect.Lists;
-import com.pgssoftware.exercises.CustomCollector.Element;
-import com.pgssoftware.exercises.CustomCollector.ElementCollector;
 import edu.emory.mathcs.backport.java.util.Collections;
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
-import static java.util.Comparator.comparing;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.groupingBy; 
 import static java.util.stream.Collectors.mapping;
-import static java.util.stream.Collectors.toMap;
 import java.util.stream.Stream;
 import org.junit.Test;
 

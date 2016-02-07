@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class ExtendedStringCollectorTest {
+public class ExtendedBuggyStringCollectorTest {
 
 	@Test
 	public void testIdentityConstraint() {
