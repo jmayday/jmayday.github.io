@@ -15,9 +15,13 @@ public class LoggerLambdaEnabled {
 
     private boolean isDebug = false;
     
-    public void debug(Supplier function) {
+    public void debug(Supplier<String> function) {
         if(isDebug) {
-            function.get();
+            debug(function.get());
         }
+    }
+    
+    public void debug(String content) {
+        
     }
 }
