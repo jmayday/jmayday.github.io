@@ -303,13 +303,23 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 				</section>
 				
 				
+
+				
 				<section>
 					<section>
-						<h2>debugowanie</h2>
-						<p><code>peek()</code></p>
+						<h2>testowanie</h2>
+						<ul>
+							<li>jak przetestować coś, co nawet nie ma nazwy?</li>
+							<li>nadać nazwę ;) poważnie</li>
+						</ul>
 						
 						<aside class="notes">
-							<p>możliwe, że metoda z pustym ciałem nie zostanie uruchomiona, można użyć zapisau 1:1; e-%gt;e</p>
+							<ul>
+								<li>przykłady: TrimmedUppercasedTest, DebugTestWithSomeExtensions</li>
+								<li>zalecane użycie <i>method references</i></li>
+								<li>lambdy mogą być użyte np. z Mockito</li>
+								<li>keypoint: refaktoryzacja do lambdy to także zmiana podejścia w pisaniu testów</li>
+							</ul>
 						</aside>
 						
 					</section>
@@ -317,7 +327,24 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 				
 				<section>
 					<section>
-						<h2>testowanie</h2>
+						<h2>debugowanie</h2>
+						<p>jak śledzić proces krok po kroku w przypadku ukrytej iteracji?</p>
+						<ul>
+							
+							<li class="fragment">forEach?</li>
+							<li class="fragment">peek</li>
+						</ul>
+						
+						
+						<aside class="notes">
+							<ul>
+								<li><i>Returns a stream consisting of the elements of this stream, additionally performing the provided action on each element as elements are consumed from the resulting stream.</i></li>
+								<li><i>api note: This method exists mainly to support debugging, where you want to see the elements as they flow past a certain point in a pipeline.</i></li>
+								<li>możliwe, że metoda z pustym ciałem nie zostanie uruchomiona, można użyć zapisau 1:1; e-&gt;e</li>
+							</ul>
+							
+						</aside>
+						
 					</section>
 				</section>
 				
