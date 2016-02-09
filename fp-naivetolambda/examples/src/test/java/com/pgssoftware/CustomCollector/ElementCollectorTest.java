@@ -49,6 +49,7 @@ public class ElementCollectorTest {
                 Integer.valueOf("2"), new BigDecimal("200.0"),
                 Integer.valueOf("5"), new BigDecimal("300.0"));
         
+        // cast required for java-8-openjdk
         Map<Integer, FormElement> myStructureOfFormElements = (Map<Integer, FormElement>)Stream.of(
                 jobs
                     .entrySet()

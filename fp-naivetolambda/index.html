@@ -241,8 +241,10 @@ public static int multiplyThrough(List&lt;Integer&gt; linkedListOfNumbers) {
 						</ul>
 						
 						<aside class="notes">
+							<p>identity element - wartość początkowa i rezultat w przypadku pustego strumienia</p>
 							<p>wywołanie operacji na parallelStream() spowoduje nieoczekiwane rezultaty - błędy w implementacji</p>
-							<p>przetwarzanie sekwencyjne i równoległe powinno produkować ten sam rezultat</p>
+							<p>przetwarzanie sekwencyjne i równoległe powinno produkować ten sam rezultat *są wyjątki</p>
+							
 							
 						</aside>
 						
@@ -375,19 +377,29 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 							<li>także testy mogą skorzystać na refaktoryzacji do lambdy</li>							
 						</ul>
 					</section>
+					
+					<section>
+						<h2>co dalej?</h2>
+
+							<blockquote cite="http://authors.phptr.com/larman/uml_ooad/index.html">
+								&ldquo;The critical design tool for software development is a mind well educated in design
+								principles. It is not…technology.&rdquo;
+							</blockquote>
+							<b>Craig Larman</b> 
+
+					</section>
 				</section>
 	
 
 				<section style="text-align: left;">
 					<h1>dziękuję</h1>
 					Odnośniki:
-					<p>
-						
-						- <a href="https://docs.oracle.com">https://docs.oracle.com</a> <br>
-						- <a href="https://github.com/RichardWarburton/java-8-lambdas-exercises">https://github.com/RichardWarburton/java-8-lambdas-exercises</a> <br>
-						- <a href="http://shop.oreilly.com/product/0636920030713.do">Java 8 Lambdas. Richard Warburton</a>
-						- <a href="https://software.intel.com/sites/default/files/article/164389/fp-consistency-102511.pdf">Consistency of Floating-Point Results using the Intel® Compiler</a>
-					</p>
+					<ul>
+						<li><a href="https://docs.oracle.com">https://docs.oracle.com</a></li>
+						<li><a href="http://shop.oreilly.com/product/0636920030713.do">Java 8 Lambdas. Richard Warburton</a></li>
+						<li><a href="https://github.com/RichardWarburton/java-8-lambdas-exercises">https://github.com/RichardWarburton/java-8-lambdas-exercises</a></li>
+						<li><a href="https://software.intel.com/sites/default/files/article/164389/fp-consistency-102511.pdf">Consistency of Floating-Point Results using the Intel® Compiler</a></li>
+					</ul>
 				</section>
 
 			</div>
