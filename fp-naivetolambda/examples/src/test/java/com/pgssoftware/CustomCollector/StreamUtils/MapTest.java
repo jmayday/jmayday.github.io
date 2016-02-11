@@ -5,15 +5,12 @@
  */
 package com.pgssoftware.CustomCollector.StreamUtils;
 
-import com.pgssoftware.exercises.StreamUtils.StreamUtils;
+import com.pgssoftware.exercises.StreamUtils.StreamUtilsBuggy;
+import com.pgssoftware.exercises.StreamUtils.StreamUtilsFixed;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
-import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -22,39 +19,25 @@ import org.junit.Test;
  */
 public class MapTest {
     
-    public MapTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    //@Test
+    @Test
     public void mapExample() {
         Stream<Integer> stream = Stream.of(1, 2, 3);
-        List<Integer> values = StreamUtils.map(stream, x -> x + 1);
+        List<Integer> values = StreamUtilsBuggy.map(stream, x -> x + 1);
+        assertEquals(Arrays.asList(2, 3, 4), values);
+    }
+    
+    // TODO uncomment to see the problem
+    // @Test
+    public void mapExampleParallel() {
+        Stream<Integer> parallelStream = Stream.of(1, 2, 3).parallel();
+	List<Integer> values = StreamUtilsBuggy.map(parallelStream, x -> x + 1);
         assertEquals(Arrays.asList(2, 3, 4), values);
     }
     
     @Test
-    public void mapExampleParallel() {
+    public void mapExampleParallelFixed() {
         Stream<Integer> parallelStream = Stream.of(1, 2, 3).parallel();
-	List<Integer> values = StreamUtils.map(parallelStream, x -> x + 1);
+	List<Integer> values = StreamUtilsFixed.map(parallelStream, x -> x + 1);
         assertEquals(Arrays.asList(2, 3, 4), values);
     }
 }

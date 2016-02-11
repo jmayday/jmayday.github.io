@@ -14,12 +14,10 @@ import java.util.stream.Stream;
  *
  * @author kuba
  */
-public class StreamUtils {
+public class StreamUtilsFixed {
 
     public static <T, R> List<R> map(Stream<T> stream, Function<T, R> mapper) {
         return stream.reduce(new ArrayList<>(), (acc, value) -> {
-//            acc.add(mapper.apply(value));
-//            return acc;
             // Make copy of list (modifying acc would violate contract of reduce method) 
             ArrayList<R> result = new ArrayList<>();
             result.addAll(acc);

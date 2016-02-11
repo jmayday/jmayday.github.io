@@ -25,9 +25,6 @@ public class FunctionalProgramming {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
-
         
         List<Integer> values = Arrays.asList(2, 1, 3, 3, 3, 5, 7, 8);
         

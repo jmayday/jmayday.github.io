@@ -21,7 +21,7 @@ import java.util.stream.Stream;
  */
 public class SideEffects {
 
-    public static List<String> mapToStrings(Stream<Integer> source) {
+    public static List<String> mapToStringsBuggyNotSynchronized(Stream<Integer> source) {
 
         ArrayList<String> result = new ArrayList<>();
         source

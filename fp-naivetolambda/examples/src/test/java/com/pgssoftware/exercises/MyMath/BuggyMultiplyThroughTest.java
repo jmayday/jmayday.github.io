@@ -6,12 +6,11 @@ package com.pgssoftware.exercises.MyMath;
  * and open the template in the editor.
  */
 
-import com.pgssoftware.exercises.MyMath.MyMathBuggy;
 import java.util.List;
 import static java.util.stream.Collectors.toList;
 import java.util.stream.Stream;
-import org.junit.Test;
 import static org.assertj.core.api.StrictAssertions.assertThat;
+import org.junit.Test;
 
 /**
  *
@@ -41,7 +40,8 @@ public class BuggyMultiplyThroughTest {
         assertThat(multiplyThrough).isEqualTo(5);
     }
     
-    @Test
+    // TODO uncomment to see the problem
+    // @Test
     public void shouldMultiplyThroughParallelStream() {
         List<Long> linkedListOfNumbers = Stream
                 .of(1,1,1,1,1)

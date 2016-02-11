@@ -49,7 +49,8 @@ public class ExtendedBuggyStringCollectorTest {
             assertEquals(result1, result2);
 	}
 	
-	@Test
+        // TODO uncomment to see the problem
+	// @Test
 	public void testAssociativityConstraint() {
             // From javadoc of Collector interface:
             
@@ -89,14 +90,16 @@ public class ExtendedBuggyStringCollectorTest {
             assertEquals("<!--one, two, three, four-->", result);
 	}
 
-	@Test
+        // TODO uncomment to see the problem
+	// @Test
 	public void testCollectPrallel() {
             Stream<String> stream = Stream.of("one", "two", "three", "four");
             String result = stream.parallel().collect(new StringCollectorBuggy(", ", "<!--", "-->"));
             assertEquals("<!--one, two, three, four-->", result);
 	}
 
-	@Test
+        // TODO uncomment to see the problem
+	// @Test
 	public void testCollectPrallelLargeDataSet() {
             System.out.println("testCollectParallelLargeDataSet");
             List<String> data = IntStream.iterate(1, i -> i + 1)
