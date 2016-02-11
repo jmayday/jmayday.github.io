@@ -24,25 +24,23 @@ public class LambdaEnabledOrder {
     
     public long count(ToLongFunction<Album> f) {
         return albums
-               .stream()
-                    .mapToLong(f)
-                    .sum();
+                .stream()
+                .mapToLong(f)
+                .sum();
     }
     
     public long countRunningTime() {
-        return count(a -> a
-                .tracks
+        return count(a -> a.tracks
                 .stream()
-                    .mapToLong(track -> track.length)
-                    .sum()
+                .mapToLong(track -> track.length)
+                .sum()
         );
     }
 
     public long countMusicians() {
-        return count(a -> a
-                .performers
+        return count(a -> a.performers
                 .stream()
-                    .count()
+                .count()
         );
     }
 

@@ -6,7 +6,7 @@
 
 		<title>Stream API - naive to lamba refactoring</title>
 
-		<meta name="description" content="Wprowadzenie do programowania funkcyjnego">
+		<meta name="description" content="Refaktoryzacja do lambdy">
 		<meta name="author" content="Jakub Madej">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,17 +42,16 @@
 			<div class="slides">
 				<section>
 					
-					<h2>Programowanie funkcyjne</h2>
+					<h2>refaktoryzacja do lambdy</h2>
 					<span class="fragment">
-					<h3>Stream API</h3>
-					<h3>refaktoryzacja do lambdy. przykłady i pułapki.</h3>
+					<h3>przykłady i pułapki.</h3>
 					</span>
+					
+					
+					<img style="border: none; box-shadow: none" width="300" height="170" data-src="img/pgs.png">
 					<p>
 						<small>Jakub Madej. 13 lutego 2016.</small>
 					</p>
-					
-					<img style="border: none; box-shadow: none" width="300" height="170" data-src="img/pgs.png">
-					
 				</section>
 
 				<section>
@@ -98,12 +97,12 @@
 					</section>
 					
 					<section>
-						<h2>przykład 01 - <i>lazy</i></h2>
+						<h2>przykład - <i>lazy</i></h2>
 						<p>miejsce na przykład z logowaniem</p>
 					</section>
 					
 					<section>
-						<h2>przykład 02 - ponowne użycie kodu z lambdą</h2>
+						<h2>przykład - ponowne użycie kodu z lambdą</h2>
 						<p><i>miejsce na przykład z wykorzystaniem <code>.sum()</code></i></p>
 					</section>
 					
@@ -146,23 +145,20 @@
 					<section>
 						<h2>interfejs</h2>
 						<ul>
-							<li>supplier() - tworzy result container</li>
-							<li>accumulator() - dodaje element do result container'a</li>
-							<li>combiner() - łączy dwa result containery</li>
-							<li>finisher() - opcjonalnie; transformata ostatecznego wyniku</li>
-							<li>charakterystyki; np. Characteristics.CONCURRENT</li>
+							<li>supplier() - tworzy <i>result container</i></li>
+							<li>accumulator() - dodaje element do <i>result container'a</i></li>
+							<li>combiner() - łączy dwa <i>result containery</i></li>
+							<li>finisher() - transformata ostatecznego wyniku</li>
+							<li>charakterystyki; np. <code>Characteristics.CONCURRENT</code></li>
 						</ul>
 						
 						<aside class="notes">
-							<ul>
-								<li></li>
-								
-							</ul>
 						</aside>
 					</section>
 					
 					<section>
-						<!-- tutaj prezentacja kodu -->
+						<h2>przykład - collector</h2>
+						<p><code>StringCollector</code></p>
 					</section>
 				</section>
 				
@@ -170,8 +166,9 @@
 					<section>
 						<h2>współbieżność a zrównoleglenie</h2>
 						<ul>
-							<li>współbieżność (concurrency)</li>
-							<li>zrównoleglenie (parallelism; data/task parallelism)</li>
+							<li>współbieżność (<i>concurrency</i>)</li>
+							<li>zrównoleglenie (<i>parallelism; data/task parallelism</i>)</li>
+							<li>współbieżność &#8655; równoległość</li>
 						</ul>
 						
 						<aside class="notes">
@@ -188,15 +185,15 @@
 						<ul>
 							<li>rosnące znaczenie związane z możliwośćiami sprzętu</li>
 							<li>prawo Amdahla</li>
-							<li>task paralellism - wykonywanie wielu funkcji na zestawie danych</li>
-							<li>data parallelism - wykonywanie jednej funkcji na tych samych lub różnych danych</li>
+							<li><i>task paralellism</i> - wykonywanie wielu funkcji na zestawie danych</li>
+							<li><i>data parallelism</i> - wykonywanie jednej funkcji na tych samych lub różnych danych</li>
 						</ul>
 						
 						<aside class="notes">
-							<span>data parallelism dzięki podziałowi zadania na mniejsze.
-							prawo Amdahla służy do szacowania maksymalnego możliwego przyśpieszenia systemu gdy tylko jego część zostaje ulepszona 
-							nie każde wywołanie .stream() warto wymienić na .parallelStream() - wydajność!
-							rozmiar kolekcji do przetworzenia to nie jedyny czynnik który należy wiąć pod uwagę</span>
+							<p>data parallelism dzięki podziałowi zadania na mniejsze.</p>
+							<p>prawo Amdahla służy do szacowania maksymalnego możliwego przyśpieszenia systemu gdy tylko jego część zostaje ulepszona</p>
+							<p>nie każde wywołanie .stream() warto wymienić na .parallelStream() - wydajność!</p>
+							<p>rozmiar kolekcji do przetworzenia to nie jedyny czynnik który należy wiąć pod uwagę</p>
 						</aside>
 					</section>
 				</section>
@@ -204,7 +201,7 @@
 				<section>
 					
 					<section>
-						<h2>Operacja redukcji - przykład 03</h2>
+						<h2>przykład - operacja redukcji</h2>
 						<p>miejsce na przykład z wykonaniem równoległem redukcji</p>
 					</section>
 					
@@ -212,9 +209,8 @@
 					<section>
 						<h2>Operacja redukcji</h2>
 						<ul>
-							<li>redukcja sekwencyjna -> jeden result container</li>
-							<li>redukcja równoległa -> wiele result containerów</li>
-							<li></li>
+							<li>redukcja sekwencyjna &rarr; jeden <i>result container</i></li>
+							<li>redukcja równoległa &rarr; wiele <i>result containerów</i></li>
 						</ul>
 						
 						<aside class="notes">
@@ -229,7 +225,7 @@
 						<h2>równoległa redukcja; warunki 1/2</h2>
 						<ul>
 							<li class="fragment"><i>identity constraint</i></li>
-							<span  class="fragment" >combiner.apply(a, supplier.get()).</span>
+							<!--<span  class="fragment" >combiner.apply(a, supplier.get()).</span>-->
 							<pre class="fragment"><code data-trim contenteditable>
 // pomnóż liczby z listy i pomnóż wynik przez 5 (błędny kod)
 public static int multiplyThrough(List&lt;Integer&gt; linkedListOfNumbers) {
@@ -284,12 +280,18 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 					<section>
 						<h2>czynniki do rozważenia</h2>
 						<ul>
-							<li>rozmiar kolekcji do przetworzenia</li>
-							<li>rodzaj struktury wejśćiowej (ArrayList, array, IntStream.range (wspierany swododny dostęp). HashSet, TreeSet (balans?). LinkedList, Streams.iterate, BufferedReader.lines (nieznany początkowy rozmiar).</li>
-							<li>"opakowanie"</li>
-							<li>liczba rdzeni</li>
-							<li>kosz/element</li>
-							<li>stateless/stateful</li>
+							<li class="fragment">rozmiar kolekcji do przetworzenia</li>
+							<li class="fragment">rodzaj struktury wejśćiowej:
+								<ul>
+								<li class="fragment highlight-green">ArrayList, array</li>
+								<li class="fragment highlight-blue">LinkedList, HashSet, TreeSet (balans?)</li>
+								<li class="fragment highlight-red">Streams.iterate, BufferedReader.lines (nieznany początkowy rozmiar)</li>
+							</ul>
+							</li>
+							<li class="fragment">"opakowanie"</li>
+							<li class="fragment">liczba rdzeni</li>
+							<li class="fragment">kosz/element</li>
+							<li class="fragment">stateless/stateful</li>
 						</ul>
 						
 						<aside class="notes">
@@ -325,17 +327,19 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 						</aside>
 						
 					</section>
+					
+					<section>
+						<h2>przykład - testowanie</h2>
+						<p>miejsce na przykład z <code>MyStringUtils</code> i <code>DebugTest</code></p>
+					</section>
+					
 				</section>
 				
 				<section>
 					<section>
 						<h2>debugowanie</h2>
 						<p>jak śledzić proces krok po kroku w przypadku ukrytej iteracji?</p>
-						<ul>
-							
-							<li class="fragment">forEach?</li>
-							<li class="fragment">peek</li>
-						</ul>
+						<p><code>forEach()</code> vs <code>peek()</code><p>
 						
 						
 						<aside class="notes">
@@ -348,15 +352,21 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 						</aside>
 						
 					</section>
+					
+					<section>
+						<h2>przykład - pułapki</h2>
+						<p>miejsce na przykład z <code>SideEffects</code></p>
+					</section>
 				</section>
 				
 				<section>
 					<section>
-						<h2>operacje klasy Arrays "since 1.8*"</h2>
+						<h2>operacje klasy Arrays</h2>
+						<h2><i>"since 1.8*"</i></h2>
 						
 						<ul>
-							<li>parallelSetAll - równolegała inicjalizacja</li>
-							<li>parallelPrefix - równolegle kumuluje wartości tablicy ([2.0, 1.0, 0.0, 3.0] -&gt; [2.0, 3.0, 3.0, 6.0])</li>
+							<li><code>parallelSetAll</code> - równolegała inicjalizacja</li>
+							<li><code>parallelPrefix</code> - równolegle kumuluje wartości tablicy ([2.0, 1.0, 0.0, 3.0] &rarr; [2.0, 3.0, 3.0, 6.0])</li>
 						</ul>
 						
 						<aside class="notes">
