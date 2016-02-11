@@ -25,8 +25,8 @@ public class MyMathFixed {
     
     public static Long sum(List<Long> linkedListOfNumbers) {
         return linkedListOfNumbers
-                .parallelStream()
-                .mapToLong(i -> i)
+                .stream()
+                .mapToLong(Long::longValue)
                 .sum();
     }
 }

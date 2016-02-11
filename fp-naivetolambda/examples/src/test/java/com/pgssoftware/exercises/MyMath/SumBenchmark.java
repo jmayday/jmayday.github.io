@@ -6,14 +6,11 @@ package com.pgssoftware.exercises.MyMath;
  * and open the template in the editor.
  */
 
-import com.pgssoftware.exercises.MyMath.MyMathBuggy;
-import com.pgssoftware.exercises.MyMath.MyMathFixed;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import static java.util.stream.Collectors.toList;
 import java.util.stream.IntStream;
 import org.junit.Test;
-
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.runner.Runner;
@@ -28,7 +25,7 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 public class SumBenchmark {
     
     private static final List<Long> collection = IntStream
-                .range(0, 1_000_000)
+                .range(0, 10_000_000)
                 .mapToLong(i -> i)
                 .boxed()
                 .collect(toList());

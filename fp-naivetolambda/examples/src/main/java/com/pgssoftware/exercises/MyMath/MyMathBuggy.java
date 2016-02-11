@@ -28,8 +28,7 @@ public class MyMathBuggy {
 
     public static Long sum(List<Long> linkedListOfNumbers) {
         return linkedListOfNumbers
-                .parallelStream()
-                .map(x -> x )
+                .stream()
                 .reduce(0L, (acc, x) -> acc + x);
     }
 
