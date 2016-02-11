@@ -5,7 +5,7 @@
  */
 package com.pgssoftware.exercises.Order;
 
-import com.pgssoftware.Album;
+import com.pgssoftware.intro.Album;
 import static java.util.Comparator.comparing;
 import java.util.List;
 import java.util.TreeMap;

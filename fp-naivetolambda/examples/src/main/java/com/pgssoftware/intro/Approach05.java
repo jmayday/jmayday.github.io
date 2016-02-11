@@ -3,29 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pgssoftware;
+package com.pgssoftware.intro;
 
 
 import java.util.List;
-import java.util.function.Predicate;
 
 /**
  *
  * @author kuba
  */
-public class Approach06 {
-            
-    // Approach 6: Use Standard Functional Interfaces with Lambda Expressions
+public class Approach05 {
+      
+    interface CheckPerson {
+        boolean test(Person p);
+    }
+       
+    // Approach 3: Specify Search Criteria Code in a Local Class
+    // Approach 4: Specify Search Criteria Code in an Anonymous Class
+    // Approach 5: Specify Search Criteria Code with a Lambda Expression
 
-    public static void printPersonsWithPredicate(
-        List<Person> roster, Predicate<Person> tester) {
+    public static void printPersons(
+        List<Person> roster, CheckPerson tester) {
         for (Person p : roster) {
             if (tester.test(p)) {
                 p.printPerson();
             }
         }
     }
-    
     public static void main(String... args) {
         List<Person> roster = Person.createRoster();
 
@@ -33,15 +37,14 @@ public class Approach06 {
             p.printPerson();
         }
 
-        // Approach 6: Use Standard Functional Interfaces with Lambda
-        // Expressions
+        // Approach 5: Specify Search Criteria Code with a Lambda Expression
 
         System.out.println("Persons who are eligible for Selective Service " +
-            "(with Predicate parameter):");
+            "(lambda expression):");
 
-        printPersonsWithPredicate(
+        printPersons(
             roster,
-            p -> p.getGender() == Person.Sex.MALE
+            (Person p) -> p.getGender() == Person.Sex.MALE
                 && p.getAge() >= 18
                 && p.getAge() <= 25
         );

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pgssoftware;
+package com.pgssoftware.intro;
 
 
 import java.util.List;
@@ -12,14 +12,14 @@ import java.util.List;
  *
  * @author kuba
  */
-public class Approach01 {
+public class Approach02 {
     
-    // Approach 1: Create Methods that Search for Persons that Match One
-    // Characteristic
+    // Approach 2: Create More Generalized Search Methods
 
-    public static void printPersonsOlderThan(List<Person> roster, int age) {
+    public static void printPersonsWithinAgeRange(
+        List<Person> roster, int low, int high) {
         for (Person p : roster) {
-            if (p.getAge() >= age) {
+            if (low <= p.getAge() && p.getAge() < high) {
                 p.printPerson();
             }
         }
@@ -32,11 +32,10 @@ public class Approach01 {
             p.printPerson();
         }
 
-        // Approach 1: Create Methods that Search for Persons that Match One
-        // Characteristic
+        // Approach 2: Create More Generalized Search Methods
 
-        System.out.println("Persons older than 20:");
-        printPersonsOlderThan(roster, 20);
+        System.out.println("Persons between the ages of 14 and 30:");
+        printPersonsWithinAgeRange(roster, 14, 30);
         System.out.println();
     }
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pgssoftware;
+package com.pgssoftware.intro;
 
 import java.util.List;
 
@@ -66,7 +66,7 @@ public class Album {
         }
 
         public Album build() {
-            return new com.pgssoftware.Album(name, musician, year, tracks, performers);
+            return new com.pgssoftware.intro.Album(name, musician, year, tracks, performers);
         }
     }
 

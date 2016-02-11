@@ -5,8 +5,8 @@
  */
 package com.pgssoftware.exercises.Order;
 
-import com.pgssoftware.Album;
-import com.pgssoftware.Track;
+import com.pgssoftware.intro.Album;
+import com.pgssoftware.intro.Track;
 import java.util.List;
 
 /**

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pgssoftware;
+package com.pgssoftware.intro;
 
 /*
  * Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.

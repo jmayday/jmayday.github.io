@@ -5,15 +5,11 @@
  */
 package com.pgssoftware.exercises.Order;
 
-import com.pgssoftware.Album;
+import com.pgssoftware.intro.Album;
 import static java.util.Arrays.asList;
 import java.util.List;
 import java.util.TreeMap;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -22,24 +18,6 @@ import org.junit.Test;
  */
 public class GetAlbumsSummaryTest {
     
-    public GetAlbumsSummaryTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     @Test
     public void shouldGetOrderSummary() {
