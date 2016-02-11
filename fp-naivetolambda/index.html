@@ -292,6 +292,7 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 							<li class="fragment">liczba rdzeni</li>
 							<li class="fragment">kosz/element</li>
 							<li class="fragment">stateless/stateful</li>
+							<li class="fragment">pula wątków</li>
 						</ul>
 						
 						<aside class="notes">
@@ -300,7 +301,7 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 							<p>typy prymitywne są szybsze niż ich odpowiedniki "boxed" (.mapToInt())</p>
 							<p>liczba dostępnych rdzeni; thread affinity</p>
 							<p>im większy czas spędzony na przetwarzaniu elementu, tym większy zysk ze zrównoleglenia</p>
-							<p>stateless/stateful</p>
+							<p>stateless/stateful - stateful będą wolniejsze z .parallel() ponieważ zarządzają stanem</p>
 						</aside>
 					</section>
 				</section>
@@ -318,10 +319,8 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 						
 						<aside class="notes">
 							<ul>
-								<li>przykłady: TrimmedUppercasedTest, DebugTestWithSomeExtensions</li>
 								<li>zalecane użycie <i>method references</i></li>
 								<li>lambdy mogą być użyte np. z Mockito</li>
-								<li>keypoint: refaktoryzacja do lambdy to także zmiana podejścia w pisaniu testów</li>
 							</ul>
 						</aside>
 						
@@ -381,9 +380,9 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 					<section>
 						<h2>podsumowanie</h2>
 						<ul>
-							<li>stream api umożliwia łatwe dodawanie własnej logiki (własnych collectorów)</li>
-							<li>refaktoryzacja do (darmowego) zrównoleglenia wymaga nieco więcej pracy</li>
-							<li>także testy mogą skorzystać na refaktoryzacji do lambdy</li>							
+							<li class="fragment">specyfika języka ewoluuje. co ze stylem kodowania?</li>
+							<li class="fragment">refaktoryzacja do lambdy to także zmiana podejścia w pisaniu testów</li>							
+							<li class="fragment">skorzystanie z (darmowego) zrównoleglenia wymaga nieco więcej pracy</li>
 						</ul>
 					</section>
 					
