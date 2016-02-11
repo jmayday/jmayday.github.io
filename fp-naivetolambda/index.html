@@ -359,19 +359,26 @@ R r2 = finisher.apply(combiner.apply(a2, a3));  // result with splitting
 				
 				<section>
 					<section>
-						<h2>operacje klasy Arrays</h2>
-						<h2><i>"since 1.8*"</i></h2>
+						<h2>operacje <i>"since 1.8*"</i></h2>
+						<h2>klasa <i>Arrays</i> i nie tylko</h2>
 						
 						<ul>
 							<li><code>parallelSetAll</code> - równolegała inicjalizacja</li>
 							<li><code>parallelPrefix</code> - równolegle kumuluje wartości tablicy ([2.0, 1.0, 0.0, 3.0] &rarr; [2.0, 3.0, 3.0, 6.0])</li>
+							<li><code>computeIfAbsent</code>
+							<li><code>findAny, findFirst</code>
 						</ul>
 						
 						<aside class="notes">
 							<p>Because floating-point operations may not be strictly associative, the returned result may not be identical to the value that would be obtained if the operation was performed sequentially.
 							</p>
 						</aside>
-						
+
+					</section>
+					
+					<section>
+						<h2>przykład - <i>computeIfAbsent</i></h2>
+						<p>miejsce na przykład z <code>MovieRatings</code></p>
 					</section>
 					
 				</section>
