@@ -1,3 +1,5 @@
+package com.pgssoftware;
+
 /**
  * Created by kuba on 04.02.17.
  */

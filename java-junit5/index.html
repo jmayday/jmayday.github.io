@@ -119,6 +119,33 @@ class E01ZnajdzTrzyRozniceTest {
 					</table>
 				</section>
 
+				<section>
+					<h2>Assert all</h2>
+					<code><pre>
+org.opentest4j.MultipleFailuresError: collection (2 failures)
+	Size must be 3 ==> expected: <3> but was: <2>
+	AAA element must be first ==> expected: <AZZ> but was: <AAA>
+					</pre></code>
+				</section>
+
+				<section>
+					<h2>Assert throws</h2>
+					<ul>
+						<li>junit4:</li>
+						<ul>
+							<li>Test(expected=IllegalArgumentException.class)</li>
+							<li class="fragment">expect message? @Rule</li>
+						</ul>
+						<div class="fragment">
+						<li>junit5:</li>
+						<ul >
+							<li>assertThrows</li>
+						</ul>
+						</div>
+					</ul>
+
+				</section>
+
 
                 <section>
                     <h2>dynamic tests</h2>
