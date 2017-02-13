@@ -55,12 +55,30 @@
 				</section>
 
 				<section>
+					<h2>Znajdź trzy różnice</h2>
+					<pre><code>
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class E01ZnajdzTrzyRozniceTest {
+
+    @Test
+    void shouldFind3Differences() {
+        short expected = 3;
+        short actual = 3;
+        assertEquals(expected, actual, "must find 3 differences");
+    }
+
+}</code></pre>
+				</section>
+
+				<section>
 					<h2>Podstawy</h2>
 					<ul>
 						<li class="fragment fade-up">private package</li>
 						<li class="fragment fade-up">@Test (org.junit.jupiter.api)</li>
-						<li class="fragment fade-up">lifecycle</li>
 						<li class="fragment fade-up">assertEquals</li>
+						<li class="fragment fade-up">lifecycle</li>
 						<li class="fragment fade-up">lambdy (laaaazy)</li>
 						<li class="fragment fade-up">assertAll</li>
 						<li class="fragment fade-up">assertThrows</li>
@@ -100,6 +118,38 @@
 						</tbody>
 					</table>
 				</section>
+
+
+                <section>
+                    <h2>dynamic tests</h2>
+                    <ul>
+                        <li class="fragment fade-up">DynamicTest</li>
+                        <li class="fragment fade-up">@TestFactory<span style="display: block;font-style: italic;
+    font-size: smaller;">Collection, Stream, Iterable, Iterator</span></li>
+                        <li class="fragment fade-up"><span style="color: #ff2c2d;">..runtime</span></li>
+                    </ul>
+
+                    <aside class="notes">
+                        odnieść się do przykładu z zaproszenia
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>extension model</h2>
+                    <ul>
+                        <li class="fragment">ContainerExecutionCondition</li>
+                        <li class="fragment">TestInstancePostProcessor</li>
+                        <li class="fragment">TextExecutionCondition</li>
+                        <li class="fragment">BeforeAllCallback</li>
+                        <li class="fragment">BeforeEachCallback</li>
+                        <li class="fragment">BeforeTestExecutionCallback</li>
+                        <li class="fragment">ParameterResolver</li>
+                        <li class="fragment">TestExecutionExceptionHandler</li>
+                        <li class="fragment">AfterTestExecutionCallback</li>
+                        <li class="fragment">AfterEachCallback</li>
+                        <li class="fragment">AfterAllCallback</li>
+                    </ul>
+                </section>
 			</div>
 		</div>
 
