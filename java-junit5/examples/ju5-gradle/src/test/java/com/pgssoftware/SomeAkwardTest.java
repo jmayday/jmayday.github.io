@@ -1,4 +1,4 @@
-package first;
+package com.pgssoftware;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

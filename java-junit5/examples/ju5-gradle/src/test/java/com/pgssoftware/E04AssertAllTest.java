@@ -1,4 +1,4 @@
-package first;
+package com.pgssoftware;
 
 import org.junit.Assert;
 import org.junit.Test;

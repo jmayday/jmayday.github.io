@@ -1,4 +1,4 @@
-package first;
+package com.pgssoftware;
 
 import org.junit.jupiter.api.extension.*;
 import org.junit.platform.commons.util.StringUtils;
