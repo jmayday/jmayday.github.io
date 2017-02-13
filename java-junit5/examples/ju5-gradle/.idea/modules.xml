@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ju5-gradle.iml" filepath="$PROJECT_DIR$/.idea/modules/ju5-gradle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ju5-gradle_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ju5-gradle_main.iml" group="ju5-gradle" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ju5-gradle_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ju5-gradle_test.iml" group="ju5-gradle" />
+    </modules>
+  </component>
+</project>
