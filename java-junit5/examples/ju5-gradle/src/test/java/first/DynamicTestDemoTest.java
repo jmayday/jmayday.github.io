@@ -7,9 +7,6 @@ import org.junit.jupiter.api.TestFactory;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by kuba on 08.02.17.
- */
 public class DynamicTestDemoTest {
 
     @TestFactory

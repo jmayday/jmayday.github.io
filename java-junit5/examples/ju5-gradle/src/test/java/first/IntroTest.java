@@ -1,12 +1,8 @@
 package first;
 
-import org.assertj.core.api.Assertions;
-import org.junit.experimental.categories.Categories;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

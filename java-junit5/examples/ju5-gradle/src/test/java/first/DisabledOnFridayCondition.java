@@ -7,13 +7,9 @@ import java.lang.reflect.AnnotatedElement;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.Timer;
 
 import static org.junit.platform.commons.util.AnnotationUtils.findAnnotation;
 
-/**
- * Created by kuba on 10.02.17.
- */
 class DisabledOnFridayCondition implements ContainerExecutionCondition, TestExecutionCondition {
 
     private static final ConditionEvaluationResult ENABLED = ConditionEvaluationResult.enabled(
