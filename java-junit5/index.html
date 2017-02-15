@@ -186,22 +186,55 @@ Stream<DynamicTest> fibonacciTestFactory() {
 
                 </section>
 
-                <section>
-                    <h2>extension model</h2>
-                    <ul>
-                        <li class="fragment">ContainerExecutionCondition</li>
-                        <li class="fragment">TestInstancePostProcessor</li>
-                        <li class="fragment">TextExecutionCondition</li>
-                        <li class="fragment">BeforeAllCallback</li>
-                        <li class="fragment">BeforeEachCallback</li>
-                        <li class="fragment">BeforeTestExecutionCallback</li>
-                        <li class="fragment">ParameterResolver</li>
-                        <li class="fragment">TestExecutionExceptionHandler</li>
-                        <li class="fragment">AfterTestExecutionCallback</li>
-                        <li class="fragment">AfterEachCallback</li>
-                        <li class="fragment">AfterAllCallback</li>
-                    </ul>
-                </section>
+				<section>
+					<section>
+						<h2>extension model</h2>
+
+						<ul>
+							<li class="fragment">programmatic, conditional test/container execution</li>
+							<li class="fragment">post-process test instances</li>
+							<li class="fragment">additional behavior to test containers before/after all tests are invoked</li>
+							<li class="fragment">additional behavior to tests before/after each test is invoked</li>
+							<li class="fragment">additional behavior to tests immediately before/after each test is executed</li>
+							<li class="fragment">dynamically resolve parameters at runtime</li>
+							<li class="fragment">handle exceptions thrown during test execution</li>
+
+						</ul>
+
+					<aside class="notes">
+					"extension pointy ponad featury"
+					</aside>
+					</section>
+
+					<section>
+						<h2>extension points</h2>
+						<ul>
+							<li class="fragment">ContainerExecutionCondition</li>
+							<li class="fragment">TestInstancePostProcessor</li>
+							<li class="fragment">TextExecutionCondition</li>
+							<li class="fragment">BeforeAllCallback</li>
+							<li class="fragment">BeforeEachCallback</li>
+							<li class="fragment">BeforeTestExecutionCallback</li>
+							<li class="fragment">ParameterResolver</li>
+							<li class="fragment">TestExecutionExceptionHandler</li>
+							<li class="fragment">AfterTestExecutionCallback</li>
+							<li class="fragment">AfterEachCallback</li>
+							<li class="fragment">AfterAllCallback</li>
+						</ul>
+
+						<aside class="notes">
+							Dla każdego extension point istnieje prosty interefejs o tej samej nazwie.
+							W każdym punkcie junit zbiera informacje o kontekście, sięga po listę zarejestrowanych extensionów (implementują interfejsy),
+							woła metody oraz ewentualnie zmienia zachowanie testu w zależności od implementacji metod i wartości zwracanych przez te metody.
+						</aside>
+					</section>
+
+					<section>
+						<h2>rejestrrowanie rozszerzeń</h2>
+						<div>@ExtendWith</div>
+					</section>
+				</section>
+
 			</div>
 		</div>
 
