@@ -55,6 +55,7 @@
 				</section>
 
 				<section>
+				<section>
 					<h2>Znajdź trzy różnice</h2>
 					<pre><code>
 import org.junit.jupiter.api.Test;
@@ -145,20 +146,44 @@ org.opentest4j.MultipleFailuresError: collection (2 failures)
 					</ul>
 
 				</section>
+				</section>
 
 
                 <section>
-                    <h2>dynamic tests</h2>
-                    <ul>
-                        <li class="fragment fade-up">DynamicTest</li>
-                        <li class="fragment fade-up">@TestFactory<span style="display: block;font-style: italic;
+					<section>
+						<h2>dynamic tests</h2>
+						<ul>
+							<li class="fragment fade-up">DynamicTest</li>
+							<li class="fragment fade-up">@TestFactory<span style="display: block;font-style: italic;
     font-size: smaller;">Collection, Stream, Iterable, Iterator</span></li>
-                        <li class="fragment fade-up"><span style="color: #ff2c2d;">..runtime</span></li>
-                    </ul>
+							<li class="fragment fade-up"><span style="color: #ff2c2d;">..runtime</span></li>
+						</ul>
 
-                    <aside class="notes">
-                        odnieść się do przykładu z zaproszenia
-                    </aside>
+						<aside class="notes">
+							Z junit5 możliwe jest tworzenie testów w runtime'ie. Z junit<5 kod musiał być zdefiniowany już podczas kompilacji.
+							Uwaga! Odnieść się do przykładu z zaproszenia
+						</aside>
+					</section>
+
+					<section>
+						<h2>Lepsza alternatywa dla @Parameterized</h2>
+						<div>
+							<code><pre>
+@TestFactory
+Stream<DynamicTest> fibonacciTestFactory() {
+	return Stream.of(new int[][] {{ 0, 0 }, { 1, 1 }})
+			.map(this::test);
+}
+							</pre></code>
+						</div>
+						<aside class="notes">
+							The lifecycle of a dynamic test is diferent from that of a
+							standard @Test annotated method. This means that lifecycle
+							callback methods, such as @BeforeEach and @AfterEach , are
+							not executed for dynamic tests.
+						</aside>
+					</section>
+
                 </section>
 
                 <section>
