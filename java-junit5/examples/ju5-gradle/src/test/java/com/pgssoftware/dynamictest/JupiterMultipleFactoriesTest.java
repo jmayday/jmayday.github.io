@@ -1,4 +1,4 @@
-package com.pgssoftware;
+package com.pgssoftware.dynamictest;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class FactoryTest {
+public class JupiterMultipleFactoriesTest {
 
     @TestFactory
     List<DynamicTest> tests() {

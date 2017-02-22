@@ -1,4 +1,4 @@
-package com.pgssoftware;
+package com.pgssoftware.assertall;
 
 
 import org.junit.jupiter.api.Assertions;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class E041AssertAllTest {
+public class JupiterAssertAllTest {
 
     @Test
     public void shouldReturnCollectionOfSizeWithFixedFirstElement() {

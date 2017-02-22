@@ -1,8 +1,8 @@
-package com.pgssoftware;
+package com.pgssoftware.lifecycle;
 
 import org.junit.jupiter.api.*;
 
-public class E03NewLifecycleNamesTest {
+public class NewLifecycleNamesTest {
 
     @BeforeAll
     public static void beforeAll() {

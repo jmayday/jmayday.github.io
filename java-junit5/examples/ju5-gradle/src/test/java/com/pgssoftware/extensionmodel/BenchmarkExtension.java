@@ -1,4 +1,4 @@
-package com.pgssoftware;
+package com.pgssoftware.extensionmodel;
 
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;

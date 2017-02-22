@@ -1,10 +1,10 @@
-package com.pgssoftware;
+package com.pgssoftware.news;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class E01NewAssertEqualsOrderTest {
+class VintageNonLazyAssertEqualsTest extends AssertEquals {
 
     @Test
     void shouldFind3Differences() {
@@ -13,14 +13,5 @@ class E01NewAssertEqualsOrderTest {
         String assertionMessage = getAssertionMessage();
         assertEquals(expected, actual, assertionMessage);
     }
-
-    private String getAssertionMessage() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("must");
-        sb.append(" find");
-        sb.append(" 3 differences");
-        return sb.toString();
-    }
-
 
 }

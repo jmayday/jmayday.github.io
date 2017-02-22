@@ -1,4 +1,4 @@
-package com.pgssoftware;
+package com.pgssoftware.dynamictest;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class E06ParameterizedTest {
+public class VintageParameterizedTest {
 
     @Parameterized.Parameters(name = "input={0}, expected={1}")
     public static Collection<Object[]> data() {
@@ -27,7 +27,7 @@ public class E06ParameterizedTest {
 
     private int fExpected;
 
-    public E06ParameterizedTest(int input, int expected) {
+    public VintageParameterizedTest(int input, int expected) {
         fInput= input;
         fExpected= expected;
     }

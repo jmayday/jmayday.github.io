@@ -1,15 +1,14 @@
-package com.pgssoftware;
+package com.pgssoftware.exceptions;
 
 
+import com.pgssoftware.Generator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class E051ExceptionsTestingTest {
-
-
+public class JupiterExceptionTestingTest {
 
     @Test
-    public void shouldThrowException() {
+    public void shouldThrowExceptionJupiter() {
 
         Throwable throwable = Assertions.assertThrows(IllegalArgumentException.class,
                 () -> {
@@ -20,10 +19,4 @@ public class E051ExceptionsTestingTest {
 
     }
 
-    @Test
-    public void shouldThrowExceptionWithMessage() {
-
-        Generator generator = new Generator();
-        String actual = generator.generate("AAAE",0);
-    }
 }

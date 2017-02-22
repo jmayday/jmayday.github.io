@@ -1,4 +1,4 @@
-package com.pgssoftware;
+package com.pgssoftware.dynamictest;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import static java.lang.String.format;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-public class E061DynamicTest {
+public class JupiterParameterizedTest {
 
     @TestFactory
     Stream<DynamicTest> fibonacciTestFactory() {

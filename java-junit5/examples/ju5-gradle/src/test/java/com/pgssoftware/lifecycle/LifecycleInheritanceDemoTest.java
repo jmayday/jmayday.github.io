@@ -1,4 +1,4 @@
-package com.pgssoftware;
+package com.pgssoftware.lifecycle;
 
 import org.junit.jupiter.api.*;
 

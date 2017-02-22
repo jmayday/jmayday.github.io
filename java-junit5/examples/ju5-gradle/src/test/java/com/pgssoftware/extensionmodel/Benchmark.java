@@ -1,4 +1,4 @@
-package com.pgssoftware;
+package com.pgssoftware.extensionmodel;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;

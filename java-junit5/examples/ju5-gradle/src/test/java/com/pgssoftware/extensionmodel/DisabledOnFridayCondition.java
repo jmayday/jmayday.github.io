@@ -1,4 +1,4 @@
-package com.pgssoftware;
+package com.pgssoftware.extensionmodel;
 
 import org.junit.jupiter.api.extension.*;
 import org.junit.platform.commons.util.StringUtils;
@@ -33,9 +33,11 @@ class DisabledOnFridayCondition implements ContainerExecutionCondition, TestExec
 
     private ConditionEvaluationResult evaluate(Optional<AnnotatedElement> element) {
         Optional<DisabledOnFriday> disabled = findAnnotation(element, DisabledOnFriday.class);
-        if (disabled.isPresent() && LocalDateTime.now().getDayOfWeek() == DayOfWeek.SUNDAY) {
-            String reason = disabled.map(DisabledOnFriday::value).filter(StringUtils::isNotBlank).orElseGet(
-                    () -> element.get() + " is @DisabledOnFriday");
+        if (disabled.isPresent() && LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
+            String reason = disabled
+                    .map(DisabledOnFriday::value)
+                    .filter(StringUtils::isNotBlank)
+                    .orElseGet(() -> element.get() + " is @DisabledOnFriday");
             return ConditionEvaluationResult.disabled(reason);
         }
 

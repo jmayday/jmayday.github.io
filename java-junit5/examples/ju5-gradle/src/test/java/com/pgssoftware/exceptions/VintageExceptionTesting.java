@@ -1,11 +1,12 @@
-package com.pgssoftware;
+package com.pgssoftware.exceptions;
 
 
+import com.pgssoftware.Generator;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class E05ExceptionsTestingTest {
+public class VintageExceptionTesting {
 
 
     @Rule
