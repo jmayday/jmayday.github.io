@@ -229,9 +229,78 @@ Stream<DynamicTest> fibonacciTestFactory() {
 					</section>
 
 					<section>
-						<h2>rejestrrowanie rozszerzeń</h2>
-						<div>@ExtendWith</div>
+						<h2>rejestrowanie rozszerzeń</h2>
+						<div style="text-align: left; padding-left: 10%;">@ExtendWith<span class="fragment" style="color: red">(CustomDisabledExtension.class)</span>
+						<br>public class FindAllCustomersTest {
+						<br>}
+						</div>
+
 					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Architektura</h2>
+
+						<ul>
+							<li>JUnit 4 - jeden artefakt (niezależnie gdzie wykorzystywany)</li>
+							<li>JUnit 5</li>
+							<ul>
+								<li>JUnit Jupiter</li>
+								<li>JUnit Vintage</li>
+								<li>JUnit Platform</li>
+							</ul>
+						</ul>
+					</section>
+
+					<section>
+						<h2>JUnit 5 artefakty</h2>
+						<ul>
+							<li>junit-jupiter-api</li>
+							<li>junit-jupiter-engine</li>
+							<li>junit-vintage-engine</li>
+							<li>junit-platform-enginge</li>
+							<li>junit-platform-launcher</li>
+
+						</ul>
+					</section>
+
+					<section>
+						<h2>API Lifecycle</h2>
+						<ul>
+							<li>Internal - absolutnie nie używać</li>
+							<li>Deprecated - nie używać, może zniknąć</li>
+							<li>Experimental - dla nowych ficzurów</li>
+							<li>Maintained - nie powinno zniknąć, jeśli zniknie oznaczone będzie jako Deprecated</li>
+							<li>Stable - nie będzie zmian w aktualnej werji</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Narzędzia i setup</h2>
+						<h3>Intellij IDEA 2016.3.1, Eclipse 4.7 M4</h3>
+
+						<code><pre>
+testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M3")
+testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M3")
+testRuntime("org.junit.vintage:junit-vintage-engine:4.12.0-M3")</pre></code>
+					</section>
+				</section>
+
+
+				<section>
+					<h1>Pytania?</h1>
+				</section>
+
+				<section>
+					<h1>Źródła</h1>
+
+					<ul>
+						<li>Nicolai Parlog - http://blog.codefx.org/libraries/junit-5-setup/</li>
+						<li>JUnit 5 User Guide - http://junit.org/junit5/docs/current/user-guide/</li>
+					</ul>
 				</section>
 
 			</div>
