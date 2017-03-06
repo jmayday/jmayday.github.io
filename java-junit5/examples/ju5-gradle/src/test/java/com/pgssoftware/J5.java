@@ -11,10 +11,6 @@ public class J5 {
 
     private List<DynamicTest> tests = new ArrayList<>();
 
-    protected void λ(Executable test) {
-        λ("", test);
-    }
-
     protected void λ(String displayName, Executable test) {
         tests.add(DynamicTest.dynamicTest(displayName, test));
     }
