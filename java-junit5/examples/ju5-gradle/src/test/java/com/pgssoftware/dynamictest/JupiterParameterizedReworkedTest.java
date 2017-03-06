@@ -11,11 +11,11 @@ import static com.pgssoftware.dynamictest.JupiterParameterizedReworkedTest.FibTe
 import static java.lang.String.format;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-public class JupiterParameterizedReworkedTest {
+class JupiterParameterizedReworkedTest {
 
-    public static class FibTestCase {
-        public int input;
-        public int expected;
+    static class FibTestCase {
+        int input;
+        int expected;
 
         static FibTestCase of(int input, int expected) {
             FibTestCase backpack = new FibTestCase();
@@ -43,11 +43,6 @@ public class JupiterParameterizedReworkedTest {
                 () -> {
                     Assert.assertEquals(i.expected, Fibonacci.compute(i.input));
                 });
-    }
-
-    @Test
-    public void test2() {
-
     }
 
     private static class Fibonacci {
