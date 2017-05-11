@@ -23,55 +23,140 @@
 	</head>
 	<body>
 		<div class="reveal">
+
 			<div class="slides">
-				<section>Slide 1
+
+				<section data-background="img/pgssoftware-logo-variants/pgssoftware-logo.svg" data-background-repeat="no-repeat" data-background-size="600px" data-background-position="left bottom">
+					<h2>Aplikacja JAVA<span class="fragment" style="color: #ff2c2d">*</span></h2>
+					<h2 style="color: #1b91ff">Analiza aplikacji komercyjnej</h2>
+					<p>
+						<small><a href="https://www.pgs-soft.com/">PGS Software</a>. Adam Gurgul, Jakub Madej. 16 maja 2017.</small>
+					</p>
+					<p class="fragment" style="color: #ff2c2d">
+						<small>*<i>ze względu na politykę poufności nie zdradzamy nazwy applikacji</i></small>
+					</p>
+				</section>
+
+				<section>
+					<pre><code>
+Zajawka albo myśl</code></pre>
+				</section>
+
+				<section>
+					<h2>Agenda</h2>
+					<ul>
+						<li class="fragment grow">Wykorzystane narzędzia</li>
+						<li class="fragment grow">Wykorzystne biblioteki</li>
+						<li class="fragment grow">Wykorzystane frameworki</li>
+						<li class="fragment grow">Aplikacja</li>
+						<li class="fragment grow">System kontroli wersji</li>
+						<li class="fragment grow">Sposób pracy z kodem</li>
+						<li class="fragment grow">Organizacja zadań</li>
+						<li class="fragment grow">Współpraca w zespoleń</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Wykorzystane narzędzia</h2>
+					<ul>
+						<li class="fragment fade-up">jHipster</li>
+						<li class="fragment fade-up">mapstruct</li>
+						<li class="fragment fade-up">gradle</li>
+						<li class="fragment fade-up">indellij idea</li>
+						<li class="fragment fade-up">squirrel SQL</li>
+						<li class="fragment fade-up">swagger</li>
+					</ul>
+
+					<aside class="notes">Wspomnieć o EAP</aside>
+				</section>
+
+				<section>
+					<h2>Wykorzystane biblioteki</h2>
+					<ul>
+						<li class="fragment fade-up">guava</li>
+						<li class="fragment fade-up">apache commons</li>
+					</ul>
+
 					<aside class="notes">
-						1. Wykorzystane narzędzia:
-						jhipster,
-						mapstruct,
-						gradle,
-						intellij jako IDE (EAP, dac link na koncowych slajdach)
-						squirrel SQL (cokolwiek co ma odpowiedni driver do bazy danych)
-						swagger
-
-						2. Wykorzystne biblioteki
-						guava, apache commons,
-
-						czym są, w czym w pomagają
-						DRY vs KISS
-
-						3. Wykorzystane frameworki
-
-						Spring (moduły spring-boot, spring-data-jpa, spring-rest),
-						Hibernate (poruszyć problem: n+1, lazy vs eager, LazyInitializationException, transient, id vs uuid, equals/hashCode)
-
-						4. Aplikacja
-						a) architektura - RESTful, baza danych: in memory (h2), oracle
-						b) komponenty - warstwy: (web, serwisy, repozytoria),
-						c) warstwy
-						d) wzorce - builder
-						e) klasy
-
-
-						5 System kontroli wersji
-						Git, strategia branchowania: gitflow
-
-						dlaczego gitflow? rozwiązuje np. problem równoległej pracy w zespole, ułatwia (i wymusza) code-review, jest lekki (daje możliwość szybkiego branchownia), umożliwia hotfixy dowonlej wersji
-
-						o czym warto pamiętać? o konwencjach (git commit message), o możliwośćiach (rebase, w tym squash itp, amend)
-
-						6. Sposób pracy z kodem
-						a) dobre i złe praktyki
-						b) dobry i zły kod
-
-						7. organizacja zadań
-
-						metodologia scrum ()
-
-						8 współpraca w zespole
+						Czym są. W czym pomagają. Pułapki; DRY vs KISS
 					</aside>
 				</section>
-				<section>Slide 2</section>
+
+				<section>
+					<h2>Wykorzystane frameworki</h2>
+					<ul>
+						<li class="fragment fade-up">Spring</li>
+						<li class="fragment fade-up">Hibernate</li>
+					</ul>
+
+					<aside class="notes">
+						Spring (moduły spring-boot, spring-data-jpa, spring-rest)
+						Hibernate (poruszyć problem: n+1, lazy vs eager, LazyInitializationException, transient, id vs uuid, equals/hashCode)
+					</aside>
+				</section>
+
+				<section>
+					<h2>Aplikacja</h2>
+					<ul>
+						<li class="fragment fade-up">architektura - RESTful, baza danych: in memory (h2), oracle</li>
+						<li class="fragment fade-up">komponenty - warstwy: (web, serwisy, repozytoria)</li>
+						<li class="fragment fade-up">warstwy</li>
+						<li class="fragment fade-up">wzorce - builder</li>
+						<li class="fragment fade-up">klasy</li>
+					</ul>
+
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h2>System kontroli wersji</h2>
+					<ul>
+						<li class="fragment fade-up">Git</li>
+						<li class="fragment fade-up">gitflow jako strategia branchowania</li>
+						<li class="fragment fade-up">konwencje</li>
+						<li class="fragment fade-up">możliwości</li>
+						<li class="fragment fade-up">pułapki</li>
+					</ul>
+
+					<aside class="notes">
+						Dlaczego gitflow? rozwiązuje np. problem równoległej pracy w zespole, ułatwia (i wymusza) code-review, jest lekki (daje możliwość szybkiego branchownia), umożliwia hotfixy dowonlej wersji
+
+						O czym warto pamiętać? o konwencjach (git commit message), o możliwośćiach (rebase, w tym squash itp, amend)
+					</aside>
+				</section>
+
+				<section>
+					<h2>Sposób pracy z kodem</h2>
+					<ul>
+						<li class="fragment fade-up">dobre i złe praktyki</li>
+						<li class="fragment fade-up">dobry i zły kod</li>
+					</ul>
+
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h2>Organizacja zadań</h2>
+					<ul>
+						<li class="fragment fade-up">SCRUM</li>
+					</ul>
+
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h2>Współpraca w zespole</h2>
+					<ul>
+						<li class="fragment fade-up"></li>
+					</ul>
+
+					<aside class="notes">
+					</aside>
+				</section>
+
 			</div>
 		</div>
 
