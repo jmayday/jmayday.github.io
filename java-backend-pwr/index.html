@@ -62,9 +62,12 @@ Zajawka albo myśl</code></pre>
 						<li class="fragment fade-up">jHipster</li>
 						<li class="fragment fade-up">mapstruct</li>
 						<li class="fragment fade-up">gradle</li>
-						<li class="fragment fade-up">indellij idea</li>
+						<li class="fragment fade-up">liquibase</li>
 						<li class="fragment fade-up">squirrel SQL</li>
 						<li class="fragment fade-up">swagger</li>
+						<li class="fragment fade-up">indellij idea</li>
+						<li class="fragment fade-up">JIRA, Confluence, HipChat</li>
+						<li class="fragment fade-up">git, chrome, postman</li>
 					</ul>
 
 					<aside class="notes">Wspomnieć o EAP</aside>
@@ -86,10 +89,11 @@ Zajawka albo myśl</code></pre>
 					<h2>Wykorzystane frameworki</h2>
 					<ul>
 						<li class="fragment fade-up">Spring</li>
-						<li class="fragment fade-up">Hibernate</li>
+						<li class="fragment fade-up">Hibernate (ORM)</li>
 					</ul>
 
 					<aside class="notes">
+						To, że kod się kompiluje nie znaczy że działa.
 						Spring (moduły spring-boot, spring-data-jpa, spring-rest)
 						Hibernate (poruszyć problem: n+1, lazy vs eager, LazyInitializationException, transient, id vs uuid, equals/hashCode)
 					</aside>
@@ -127,20 +131,92 @@ Zajawka albo myśl</code></pre>
 				</section>
 
 				<section>
-					<h2>Sposób pracy z kodem</h2>
-					<ul>
-						<li class="fragment fade-up">dobre i złe praktyki</li>
-						<li class="fragment fade-up">dobry i zły kod</li>
-					</ul>
 
-					<aside class="notes">
-					</aside>
+					<section>
+						<h2>Sposób pracy z kodem</h2>
+						<ul>
+							<li class="fragment fade-up">dobre i złe praktyki</li>
+							<li class="fragment fade-up">dobry i zły kod</li>
+						</ul>
+
+						<aside class="notes">
+							Dobry kod to taki, który przede wszystkim działa. Ma dobry error-handling, jest czytelny, utrzymywalny.
+
+							Zły kod to zazwyczaj także działajcy kod, ale mniej czytelny, trudniejszy w analizie, trudno utrzymywalny.
+							Zły kod powinien zostać poprawiony w czasie code-review, nie powinien trafić mastera.
+						</aside>
+					</section>
+
+					<section>
+						<h2>Dobre praktyki</h2>
+						<ul>
+							<li class="fragment fade-up">komunikacja... <span class="fragment" style="color: #ff2c2d">efektywna</span></li>
+							<li class="fragment fade-up">diff... <span class="fragment" style="color: #ff2c2d">w miarę możliwości mały</span></li>
+							<li class="fragment fade-up">konwencje... <span class="fragment" style="color: #ff2c2d">nie tylko w kodzie</span></li>
+							<li class="fragment fade-up">code-review... <span class="fragment" style="color: #ff2c2d">jak Kuba Bogu</span></li>
+							<li class="fragment fade-up">przekonanie, że generowany kod nie wymaga code-review... <span class="fragment" style="color: #ff2c2d">jak Kuba Bogu</span></li>
+							<li class="fragment fade-up">good enough... <span class="fragment" style="color: #ff2c2d">czyli studzimy zapał</span></li>
+						</ul>
+
+						<aside class="notes">
+							Komunikacja w zespole, komentarze w JIRZE, statusy ticketów.
+
+							diff: wspólne formattery, przemyślane ctrl+alt+l. review przed commitem.
+
+							Konwencje: kod, clean-code, git (rebase), WIP
+
+							Code-review: omijanie go może mieć bardzo przykre skutki (bezpośednie commity do develop'a/mastera)
+						</aside>
+					</section>
+
+					<section>
+						<h2>Złe praktyki</h2>
+						<ul>
+							<li class="fragment fade-up">czy ktokolwiek czyta napisy końcowe?</li>
+							<li class="fragment fade-up">nieprzewydywalność</li>
+						</ul>
+
+						<aside class="notes">
+							Przesadne komentarze, komentarze do oczywistych fragmentów kodu - uwaga, nie brać zbyt poważnie - komentarze wciąż są formą dokumentajci (git commit message)
+						</aside>
+					</section>
+
+					<section>
+						<h2>Dobry kod</h2>
+						<ul>
+							<li class="fragment fade-up">czytelny i zwięzły</li>
+							<li class="fragment fade-up">samodokumentujący się</li>
+							<li class="fragment fade-up">będący wzorem</li>
+						</ul>
+
+						<aside class="notes">
+						</aside>
+					</section>
+
+					<section>
+						<h2>Zły kod</h2>
+						<ul>
+							<li class="fragment fade-up">DRY, KISS, clean-code... (ich brak)</li>
+							<li class="fragment fade-up">pisany przez developera, kiedy może to zrobić maszyna</li>
+							<li class="fragment fade-up">logika biznesowa w nieprzewidywalncyh miejscach</li>
+						</ul>
+
+						<aside class="notes">
+							DRY w kontekście dostępu do baz danych.
+						</aside>
+					</section>
+
 				</section>
 
 				<section>
 					<h2>Organizacja zadań</h2>
 					<ul>
 						<li class="fragment fade-up">SCRUM</li>
+						<li class="fragment fade-up">daily</li>
+						<li class="fragment fade-up">grooming</li>
+						<li class="fragment fade-up">planning, tasking, story points</li>
+						<li class="fragment fade-up">sprint review</li>
+						<li class="fragment fade-up">sprint retro(spective)</li>
 					</ul>
 
 					<aside class="notes">
@@ -150,7 +226,12 @@ Zajawka albo myśl</code></pre>
 				<section>
 					<h2>Współpraca w zespole</h2>
 					<ul>
-						<li class="fragment fade-up"></li>
+						<li class="fragment fade-up">scrum master</li>
+						<li class="fragment fade-up">PO (product owner)</li>
+						<li class="fragment fade-up">QA (quality assurance)</li>
+						<li class="fragment fade-up">dev (back-end, front-end, full-stack)</li>
+						<li class="fragment fade-up">dev (architect)</li>
+						<li class="fragment fade-up">*tech lead</li>
 					</ul>
 
 					<aside class="notes">
