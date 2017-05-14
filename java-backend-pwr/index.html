@@ -170,6 +170,65 @@ Zajawka albo myśl</code></pre>
 					</section>
 
 					<section>
+						<h2>Code-review - przykład</h2>
+						<pre><code>
+@@ -27,33 +24,15 @@ public abstract class StoreMapper {
+
+     List&lt;String&gt; toExpRls(List&lt;UnitDepRule&gt; dependencyRules) {
+         return dependencyRules.stream()
+-            .map(rule -&gt; rule.getLines().stream()
+-                .map(line -&gt; {
+-                    RuleExpression expression = new RuleExpression();
+-                    line.getValues().forEach(
+-                        value -&gt; expression.add(value.getParameter().getId().toString(), value.getUnit().getId().toString())
+-                    );
+-                    return expression.toString();
+-                }).collect(toList())
+-            )
+-            .flatMap(Collection::stream)
++            .flatMap(rule -&gt; rule.getLines().stream())
++            .map(RuleExpression::of)
+             .collect(toList());
+     }
+</code></pre>
+					</section>
+
+					<section>
+						<h2>Generowany kod a code-review (1/2)</h2>
+						<pre><code>
+public abstract class TriggerMapper {
+
+    @Inject
+    TriggerGroupMapper rowMapper;
+
+    public final TriggerDTS toTriggerDTO(Trigger trigger) {
+        TriggerDTS dto = new TriggerDTS();
+
+        return dto
+            .withGroups(rowMapper.toTriggerGroupDTO(trigger.getGroups()))
+            .withTypeId(trigger.getType().getId())
+            .withUnitTemplateId(trigger.getTemplate().getId());
+    }
+}
+</code></pre>
+					</section>
+
+					<section>
+						<h2>Generowany kod a code-review (2/2)</h2>
+						<pre><code>
+@Mapper(componentModel = "spring", uses = {TriggerGroupMapper.class})
+public interface TriggerMapper {
+
+    @Mapping(target = "ids", ignore = true)
+    @Mapping(target = "typeId", source = "type.id")
+    @Mapping(target = "templateId", source = "template.id")
+    TriggerDTS toTriggerDTS(Trigger trigger);
+
+}
+</code></pre>
+					</section>
+
+					<section>
 						<h2>Złe praktyki</h2>
 						<ul>
 							<li class="fragment fade-up">czy ktokolwiek czyta napisy końcowe?</li>
