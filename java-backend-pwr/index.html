@@ -30,16 +30,16 @@
 					<h2>Aplikacja JAVA<span class="fragment" style="color: #ff2c2d">*</span></h2>
 					<h2 style="color: #1b91ff">Analiza aplikacji komercyjnej</h2>
 					<p>
-						<small><a href="https://www.pgs-soft.com/">PGS Software</a>. Adam Gurgul, Jakub Madej. 16 maja 2017.</small>
+						<small><a href="https://www.pgs-soft.com/">PGS Software</a> Adam Gurgul, Jakub Madej. 16 maja 2017.</small>
 					</p>
-					<p class="fragment" style="color: #ff2c2d">
-						<small>*<i>ze względu na politykę poufności nie zdradzamy nazwy applikacji</i></small>
+					<p class="fragment" style="color: #ff2c2d; padding-left: 100px">
+						<small>*<i>ze względu na politykę poufności nie zdradzamy nazwy aplikacji</i></small>
 					</p>
 				</section>
 
 				<section>
-					<pre><code>
-Zajawka albo myśl</code></pre>
+					<blockquote>
+"I choose a lazy person to do a hard job, because a lazy person will find an easy way to do it" - Bill Gates.</blockquote>
 				</section>
 
 				<section>
@@ -57,28 +57,96 @@ Zajawka albo myśl</code></pre>
 				</section>
 
 				<section>
-					<h2>Wykorzystane narzędzia</h2>
-					<ul>
-						<li class="fragment fade-up">jHipster</li>
-						<li class="fragment fade-up">mapstruct</li>
-						<li class="fragment fade-up">gradle</li>
-						<li class="fragment fade-up">liquibase</li>
-						<li class="fragment fade-up">squirrel SQL</li>
-						<li class="fragment fade-up">swagger</li>
-						<li class="fragment fade-up">indellij idea</li>
-						<li class="fragment fade-up">JIRA, Confluence, HipChat</li>
-						<li class="fragment fade-up">git, chrome, postman</li>
-					</ul>
 
-					<aside class="notes">Wspomnieć o EAP</aside>
+					<section>
+						<h2>Wykorzystane narzędzia</h2>
+						<ul>
+							<li class="fragment fade-up">Java 8</li>
+							<li class="fragment fade-up">jHipster</li>
+							<li class="fragment fade-up">Mapstruct</li>
+							<li class="fragment fade-up">Gradle (+Groovy)</li>
+							<li class="fragment fade-up">YAML</li>
+							<li class="fragment fade-up">Liquibase, Squirrel SQL</li>
+							<li class="fragment fade-up">Sonar</li>
+							<li class="fragment fade-up">Swagger</li>
+							<li class="fragment fade-up">IntelliJ IDEA</li>
+							<li class="fragment fade-up">JIRA, Confluence, HipChat</li>
+							<li class="fragment fade-up">Git, Chrome, Postman</li>
+						</ul>
+
+						<aside class="notes">Wspomnieć o EAP</aside>
+					</section>
+
+					<section>
+						<h2>Narzędzia - JIRA</h2>
+						<img src="examples/jira.png">
+					</section>
+
+					<section>
+						<h2>Narzędzia - JIRA (burndown)</h2>
+						<img src="examples/burndown.png">
+					</section>
+
+					<section>
+						<h2>Narzędzia - YAML</h2>
+						<img src="examples/yaml.png">
+					</section>
+
+
+					<section>
+						<h2>Narzędzia - Mapstruct (2/2)</h2>
+						<pre><code>
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2017-05-15T18:04:46+0200",
+    comments = "version: 1.1.0.Final, compiler: javac, environment: Java 1.8.0_112 (Oracle Corporation)"
+)
+@Component
+public class RowMapperImpl implements RowMapper {
+
+    @Autowired
+    private CellMapper cellMapper;
+
+    @Override
+    public RowDTS toRowDTS(Row row) {
+        if ( row == null ) {
+            return null;
+        }
+
+        rowDTS rowDTS = new RowDTS();
+
+        rowDTS.setId( row.getId() );
+        List&lt;CellDTS&gt; list = cellMapper.toCellDTS( row.getCells() );
+        if ( list != null ) {
+            rowDTS.setCells( list );
+        }
+
+        return rowDTS;
+    }
+}
+</code></pre>
+					</section>
+
+					<section>
+						<h2>Narzędzia - Mapstruct (1/2)</h2>
+						<pre><code>
+@Mapper(componentModel = "spring", uses = {CellMapper.class})
+public interface RowMapper {
+
+    RowDTS toRowDTS(Row row);
+}
+</code></pre>
+					</section>
+
 				</section>
 
 				<section>
 					<h2>Wykorzystane biblioteki</h2>
 					<ul>
-						<li class="fragment fade-up">guava</li>
-						<li class="fragment fade-up">apache commons</li>
+						<li class="fragment fade-up">Guava</li>
+						<li class="fragment fade-up">Apache Commons</li>
 					</ul>
+					<pre class="fragment fade-up"><code>StringUtils.rightPad("", length, ALPHABET[0]);</code></pre>
 
 					<aside class="notes">
 						Czym są. W czym pomagają. Pułapki; DRY vs KISS
@@ -86,27 +154,62 @@ Zajawka albo myśl</code></pre>
 				</section>
 
 				<section>
-					<h2>Wykorzystane frameworki</h2>
-					<ul>
-						<li class="fragment fade-up">Spring</li>
-						<li class="fragment fade-up">Hibernate (ORM)</li>
-					</ul>
 
-					<aside class="notes">
-						To, że kod się kompiluje nie znaczy że działa.
-						Spring (moduły spring-boot, spring-data-jpa, spring-rest)
-						Hibernate (poruszyć problem: n+1, lazy vs eager, LazyInitializationException, transient, id vs uuid, equals/hashCode)
-					</aside>
+					<section>
+						<h2>Wykorzystane frameworki</h2>
+						<ul>
+							<li class="fragment fade-up">Spring</li>
+							<li class="fragment fade-up">Hibernate (ORM)</li>
+						</ul>
+
+						<aside class="notes">
+							To, że kod się kompiluje nie znaczy że działa.
+							Spring (moduły spring-boot, spring-data-jpa, spring-rest)
+							Hibernate (poruszyć problem: n+1, lazy vs eager, LazyInitializationException, transient, id vs uuid, equals/hashCode)
+						</aside>
+					</section>
+
+					<section>
+						<h2>Spring</h2>
+						<h4><a href="http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/new-in-3.1.html#new-in-3.1-mvc-valid-requestbody">New Features and Enhancements in Spring Framework 3.1</a></h4>
+						<pre><code>
+public class TypeDetailsDTO implements Serializable {
+
+    private static final long serialVersionUID = 6476976503675272063L;
+
+    @NotNull
+    private String name;
+
+    @DateRange(min = "2015-01-01", max = "now")
+    private LocalDate approvalDate;
+
+}
+</code></pre>
+					</section>
+
+					<section>
+						<h2>Spring Data JPA / hibernate</h2>
+						<pre><code>
+public interface UnitRepository extends JpaRepository&lt;Unit, Long&gt; {
+
+    Optional&lt;Unit&gt; findOneByTypeIdAndAndTemplateIdAndCode(
+			Long typeId,
+			Long templateId,
+			String code);
+
+}
+</code></pre>
+					</section>
+
 				</section>
+
+
 
 				<section>
 					<h2>Aplikacja</h2>
 					<ul>
-						<li class="fragment fade-up">architektura - RESTful, baza danych: in memory (h2), oracle</li>
-						<li class="fragment fade-up">komponenty - warstwy: (web, serwisy, repozytoria)</li>
-						<li class="fragment fade-up">warstwy</li>
-						<li class="fragment fade-up">wzorce - builder</li>
-						<li class="fragment fade-up">klasy</li>
+						<li class="fragment fade-up">architektura: RESTful, baza danych: in memory (h2), oracle</li>
+						<li class="fragment fade-up">warstwy: web, serwisy, repozytoria</li>
 					</ul>
 
 					<aside class="notes">
@@ -150,12 +253,12 @@ Zajawka albo myśl</code></pre>
 					<section>
 						<h2>Dobre praktyki</h2>
 						<ul>
-							<li class="fragment fade-up">komunikacja... <span class="fragment" style="color: #ff2c2d">efektywna</span></li>
-							<li class="fragment fade-up">diff... <span class="fragment" style="color: #ff2c2d">w miarę możliwości mały</span></li>
-							<li class="fragment fade-up">konwencje... <span class="fragment" style="color: #ff2c2d">nie tylko w kodzie</span></li>
-							<li class="fragment fade-up">code-review... <span class="fragment" style="color: #ff2c2d">jak Kuba Bogu</span></li>
-							<li class="fragment fade-up">przekonanie, że generowany kod nie wymaga code-review... <span class="fragment" style="color: #ff2c2d">jak Kuba Bogu</span></li>
-							<li class="fragment fade-up">good enough... <span class="fragment" style="color: #ff2c2d">czyli studzimy zapał</span></li>
+							<li class="fragment fade-up">Komunikacja... <span class="fragment" style="color: #ff2c2d">efektywna</span></li>
+							<li class="fragment fade-up">Diff... <span class="fragment" style="color: #ff2c2d">w miarę możliwości mały</span></li>
+							<li class="fragment fade-up">Konwencje... <span class="fragment" style="color: #ff2c2d">nie tylko w kodzie</span></li>
+							<li class="fragment fade-up">Code-review... <span class="fragment" style="color: #ff2c2d">jak Kuba Bogu</span></li>
+							<li class="fragment fade-up">Code-review... <span class="fragment" style="color: #ff2c2d">nawet dla generowanego kodu</span></li>
+							<li class="fragment fade-up">Zasada good enough... <span class="fragment" style="color: #ff2c2d">czyli studzimy zapał</span></li>
 						</ul>
 
 						<aside class="notes">
@@ -231,8 +334,9 @@ public interface TriggerMapper {
 					<section>
 						<h2>Złe praktyki</h2>
 						<ul>
-							<li class="fragment fade-up">czy ktokolwiek czyta napisy końcowe?</li>
-							<li class="fragment fade-up">nieprzewydywalność</li>
+							<li class="fragment fade-up">Czy ktokolwiek czyta napisy końcowe?</li>
+							<li class="fragment fade-up">Nieprzewydywalność</li>
+							<li class="fragment fade-up"><span style="color: #ff2c2d">Błędne założenia</span></li>
 						</ul>
 
 						<aside class="notes">
@@ -243,9 +347,9 @@ public interface TriggerMapper {
 					<section>
 						<h2>Dobry kod</h2>
 						<ul>
-							<li class="fragment fade-up">czytelny i zwięzły</li>
-							<li class="fragment fade-up">samodokumentujący się</li>
-							<li class="fragment fade-up">będący wzorem</li>
+							<li class="fragment fade-up">Czytelny i zwięzły</li>
+							<li class="fragment fade-up">Samodokumentujący się</li>
+							<li class="fragment fade-up">Będący wzorem</li>
 						</ul>
 
 						<aside class="notes">
@@ -256,12 +360,14 @@ public interface TriggerMapper {
 						<h2>Zły kod</h2>
 						<ul>
 							<li class="fragment fade-up">DRY, KISS, clean-code... (ich brak)</li>
-							<li class="fragment fade-up">pisany przez developera, kiedy może to zrobić maszyna</li>
-							<li class="fragment fade-up">logika biznesowa w nieprzewidywalncyh miejscach</li>
+							<li class="fragment fade-up">Pisany przez developera, kiedy może to zrobić maszyna</li>
+							<li class="fragment fade-up">Z logiką biznesową w nieprzewidywalncyh miejscach</li>
 						</ul>
 
 						<aside class="notes">
 							DRY w kontekście dostępu do baz danych.
+
+							Dobry kod jest względnie tani w utrzymaniu (maintainable)
 						</aside>
 					</section>
 
@@ -271,11 +377,11 @@ public interface TriggerMapper {
 					<h2>Organizacja zadań</h2>
 					<ul>
 						<li class="fragment fade-up">SCRUM</li>
-						<li class="fragment fade-up">daily</li>
-						<li class="fragment fade-up">grooming</li>
-						<li class="fragment fade-up">planning, tasking, story points</li>
-						<li class="fragment fade-up">sprint review</li>
-						<li class="fragment fade-up">sprint retro(spective)</li>
+						<li class="fragment fade-up">Daily</li>
+						<li class="fragment fade-up">Grooming</li>
+						<li class="fragment fade-up">Planning, tasking, story points</li>
+						<li class="fragment fade-up">Sprint review</li>
+						<li class="fragment fade-up">Sprint retro(spective)</li>
 					</ul>
 
 					<aside class="notes">
@@ -292,6 +398,22 @@ public interface TriggerMapper {
 						<li class="fragment fade-up">dev (architect)</li>
 						<li class="fragment fade-up">*tech lead</li>
 					</ul>
+
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section data-background="img/pgssoftware-logo-variants/pgssoftware-logo.svg" data-background-repeat="no-repeat" data-background-size="600px" data-background-position="left bottom">
+					<h2>Pytania?</h2>
+
+					<h4><a href="http://jmayday.github.io/java-backend-pwr/">http://jmayday.github.io/java-backend-pwr/</a></h4>
+
+					<h3>Jesteśmy do dyspozycji. Pytania zbierane będą przez tydzień, a do najciekawszych pytań opublikujemy odpowiedzi. </h3>
+
+					<div style="padding-left: 200px;">
+						<div><a href="mailto:agurgulj@pgs-soft.com">agurgul@pgs-soft.com</a></div>
+						<div><a href="mailto:jmadej@pgs-soft.com">jmadej@pgs-soft.com</a></div>
+					</div>
 
 					<aside class="notes">
 					</aside>
