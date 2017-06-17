@@ -195,7 +195,7 @@ public interface TreeMapper {
 
  @Mapping(target = "parentId", source = "parent.id")
  @Mapping(target = "groupId", source = "group.id")
- TreeDTO toTriggerDTO(Tree tree);
+ TreeDTO toTreeDTO(Tree tree);
 
 }
 </code></pre>
@@ -207,7 +207,7 @@ public interface TreeMapper {
 					<section>
 						<h2>Code-review - the spring way? (1/3)</h2>
 						<pre><code>
-public abstract class TriggerMapper {
+public abstract class TreeMapper {
 
  @Inject
  TreeLeavesMapper treeLeavesMapper;
@@ -233,7 +233,7 @@ public interface TreeMapper {
 
  @Mapping(target = "parentId", source = "parent.id")
  @Mapping(target = "groupId", source = "group.id")
- TreeDTO toTriggerDTO(Tree tree);
+ TreeDTO toTreeDTO(Tree tree);
 }
 </code></pre>
 					</section>
@@ -272,10 +272,10 @@ public abstract class TreeMapper {
     @Mapping(target = "parentId", source = "parent.id")
     @Mapping(target = "groupId", source = "group.id")
     @Mapping(target = "leaves", ignore = true)
-    abstract TreeDTO toTriggerDTO(Tree tree);
+    abstract TreeDTO toTreeDTO(Tree tree);
 
     public final TreeDTO createNewTreeDTO(Tree tree) {
-        TreeDTO treeDTO = toTriggerDTO(tree);
+        TreeDTO treeDTO = toTreeDTO(tree);
         treeDTO.withStatus(TreeStatus.NEW);
         return treeDTO;
     }
