@@ -10,5 +10,36 @@ public class Tree {
         this.name = name;
     }
 
+    private Long id;
+
+
     private String name;
+
+    private Group group;
+
+    private Tree parent;
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public Tree getParent() {
+        return parent;
+    }
+
+    public void setParent(Tree parent) {
+        this.parent = parent;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

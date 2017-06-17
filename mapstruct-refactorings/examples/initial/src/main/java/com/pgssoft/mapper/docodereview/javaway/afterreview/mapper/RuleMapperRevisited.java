@@ -1,7 +1,7 @@
-package com.pgssoft.mapper.docodereview.afterreview.mapper;
+package com.pgssoft.mapper.docodereview.javaway.afterreview.mapper;
 
-import com.pgssoft.mapper.docodereview.domain.RuleExpression;
-import com.pgssoft.mapper.docodereview.domain.Rule;
+import com.pgssoft.mapper.docodereview.javaway.domain.RuleExpression;
+import com.pgssoft.mapper.docodereview.javaway.domain.Rule;
 import org.mapstruct.Mapper;
 
 import java.util.List;

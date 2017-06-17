@@ -1,4 +1,4 @@
-package com.pgssoft.mapper.docodereview.domain;
+package com.pgssoft.mapper.docodereview.javaway.domain;
 
 
 import java.io.Serializable;
