@@ -5,19 +5,10 @@ import java.util.List;
 public class TreeDTO {
 
     private TreeStatus status;
-    private String newField;
     private String name;
     private Long parentId;
     private Long groupId;
     private List<LeafDTO> leaves;
-
-    public String getNewField() {
-        return newField;
-    }
-
-    public void setNewField(String newField) {
-        this.newField = newField;
-    }
 
     public Long getGroupId() {
         return groupId;
@@ -83,4 +74,5 @@ public class TreeDTO {
     public void setStatus(TreeStatus status) {
         this.status = status;
     }
+
 }

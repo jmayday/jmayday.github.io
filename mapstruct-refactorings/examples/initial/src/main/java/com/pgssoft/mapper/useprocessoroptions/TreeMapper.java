@@ -10,5 +10,8 @@ import org.mapstruct.Mapping;
 public interface TreeMapper {
 
     @Mapping(target = "leaves", ignore = true)
+    @Mapping(target = "groupId", ignore = true)
+    @Mapping(target = "parentId", ignore = true)
+    @Mapping(target = "status", ignore = true)
     TreeDTO toTreeDTO(Tree tree);
 }

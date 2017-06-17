@@ -14,10 +14,13 @@ public abstract class TreeMapperRevisited {
 
     @Mapping(target = "parentId", source = "parent.id")
     @Mapping(target = "groupId", source = "group.id")
+    @Mapping(target = "status", ignore = true)
     abstract TreeDTO toTreeDTO(Tree tree);
 
     @Mapping(target = "leaves", ignore = true)
     @Mapping(target = "parent", source = "parentId")
+    @Mapping(target = "group", ignore = true)
+    @Mapping(target = "id", ignore = true)
     abstract Tree toTree(TreeDTO tree);
 
     public Tree toTree(Long id) {

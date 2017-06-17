@@ -12,5 +12,6 @@ public interface TreeMapperRevisited {
     @Mapping(target = "parentId", source = "parent.id")
     @Mapping(target = "groupId", source = "group.id")
     @Mapping(target = "leaves", ignore = true)
+    @Mapping(target = "status", ignore = true)
     TreeDTO toTreeDTO(Tree tree);
 }
