@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Mapper
 public abstract class TreeMapper {
 
-    public final TreeDTO toTriggerDTO(Tree tree) {
+    public final TreeDTO toTreeDTO(Tree tree) {
         TreeDTO dto = new TreeDTO();
 
         return dto

@@ -11,7 +11,7 @@ public abstract class TreeMapper {
     @Autowired
     private TreeLeavesMapper treeLeavesMapper;
 
-    public final TreeDTO toTriggerDTO(Tree tree) {
+    public final TreeDTO toTreeDTO(Tree tree) {
         TreeDTO dto = new TreeDTO();
 
         return dto

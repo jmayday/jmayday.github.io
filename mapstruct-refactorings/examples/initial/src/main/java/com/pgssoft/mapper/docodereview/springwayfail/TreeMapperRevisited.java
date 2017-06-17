@@ -4,11 +4,24 @@ import com.pgssoft.dto.TreeDTO;
 import com.pgssoft.entity.Tree;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper(uses = {TreeLeavesMapper.class})
-public interface TreeMapperRevisited {
+public abstract class TreeMapperRevisited {
+
+    @Autowired
+    TreeRepository treeRepository;
 
     @Mapping(target = "parentId", source = "parent.id")
     @Mapping(target = "groupId", source = "group.id")
-    TreeDTO toTriggerDTO(Tree tree);
+    abstract TreeDTO toTreeDTO(Tree tree);
+
+    @Mapping(target = "leaves", ignore = true)
+    @Mapping(target = "parent", source = "parentId")
+    abstract Tree toTree(TreeDTO tree);
+
+    public Tree toTree(Long id) {
+        return treeRepository.findOne(id);
+    }
+
 }

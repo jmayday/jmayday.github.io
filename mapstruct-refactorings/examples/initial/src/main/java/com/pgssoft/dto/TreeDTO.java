@@ -4,6 +4,13 @@ import java.util.List;
 
 public class TreeDTO {
 
+    private TreeStatus status;
+    private String newField;
+    private String name;
+    private Long parentId;
+    private Long groupId;
+    private List<LeafDTO> leaves;
+
     public String getNewField() {
         return newField;
     }
@@ -12,11 +19,6 @@ public class TreeDTO {
         this.newField = newField;
     }
 
-    private String newField;
-
-    private String name;
-    private Long parentId;
-
     public Long getGroupId() {
         return groupId;
     }
@@ -24,8 +26,6 @@ public class TreeDTO {
     public void setGroupId(Long groupId) {
         this.groupId = groupId;
     }
-
-    private Long groupId;
 
     public String getName() {
         return name;
@@ -63,6 +63,11 @@ public class TreeDTO {
         return this;
     }
 
+    public TreeDTO withStatus(TreeStatus status) {
+        this.status = status;
+        return this;
+    }
+
     public List<LeafDTO> getLeaves() {
         return leaves;
     }
@@ -71,6 +76,11 @@ public class TreeDTO {
         this.leaves = leaves;
     }
 
-    private List<LeafDTO> leaves;
+    public TreeStatus getStatus() {
+        return status;
+    }
 
+    public void setStatus(TreeStatus status) {
+        this.status = status;
+    }
 }

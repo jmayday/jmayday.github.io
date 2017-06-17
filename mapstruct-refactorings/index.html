@@ -58,10 +58,9 @@
 						<li class="fragment grow">code-review - java way</li>
 						<li class="fragment grow">code-review - mapstruct way</li>
 						<li class="fragment grow">code-review - spring way?</li>
-
-						<li class="fragment grow"></li>
-						<li class="fragment grow"></li>
-						<li class="fragment grow">iterable/noniterable</li>
+						<li class="fragment grow">code-review - odpowiedzialności mapera</li>
+						<li class="fragment grow">code-review - standardy</li>
+						<li class="fragment grow">Własny kod w maperze</li>
 					</ul>
 				</section>
 
@@ -176,14 +175,14 @@ public interface MySimpleMapper {
 						<pre><code>
 public abstract class TreeMapper {
 
-    public final TreeDTO toTreeDTO(Tree tree) {
-        TreeDTO dto = new TreeDTO();
+ public final TreeDTO toTreeDTO(Tree tree) {
+  TreeDTO dto = new TreeDTO();
 
-        return dto
-                .withName(tree.getName())
-                .withGroupId(tree.getGroup().getId())
-                .withParentId(tree.getParent().getId());
-    }
+  return dto
+   .withName(tree.getName())
+   .withGroupId(tree.getGroup().getId())
+   .withParentId(tree.getParent().getId());
+ }
 }
 </code></pre>
 					</section>
@@ -194,9 +193,9 @@ public abstract class TreeMapper {
 @Mapper
 public interface TreeMapper {
 
-    @Mapping(target = "parentId", source = "parent.id")
-    @Mapping(target = "groupId", source = "group.id")
-    TreeDTO toTriggerDTO(Tree tree);
+ @Mapping(target = "parentId", source = "parent.id")
+ @Mapping(target = "groupId", source = "group.id")
+ TreeDTO toTriggerDTO(Tree tree);
 
 }
 </code></pre>
@@ -206,39 +205,102 @@ public interface TreeMapper {
 
 				<section>
 					<section>
-						<h2>Code-review - the spring way? (1/2)</h2>
+						<h2>Code-review - the spring way? (1/3)</h2>
 						<pre><code>
 public abstract class TriggerMapper {
 
-    @Inject
-    TreeLeavesMapper treeLeavesMapper;
+ @Inject
+ TreeLeavesMapper treeLeavesMapper;
 
-   	public final TreeDTO toTreeDTO(Tree tree) {
-        TreeDTO dto = new TreeDTO();
+ public final TreeDTO toTreeDTO(Tree tree) {
+  TreeDTO dto = new TreeDTO();
 
-        return dto
-                .withName(tree.getName())
-                .withGroupId(tree.getGroup().getId())
-                .withParentId(tree.getParent().getId()
-				.withLeaves(treeLeavesMapper.toLeafDTO(tree.getLeaves()));
-	}
+  return dto
+   .withName(tree.getName())
+   .withGroupId(tree.getGroup().getId())
+   .withParentId(tree.getParent().getId()
+   .withLeaves(treeLeavesMapper.toLeafDTO(tree.getLeaves()));
+}
 }
 </code></pre>
 					</section>
 
 					<section>
-						<h2>Code-review - the spring way? (2/2)</h2>
+						<h2>Code-review - the spring way? (2/3)</h2>
 						<pre><code>
 @Mapper(componentModel = "spring", uses = {TreeLeavesMapper.class})
 public interface TreeMapper {
 
-    @Mapping(target = "parentId", source = "parent.id")
-    @Mapping(target = "groupId", source = "group.id")
-    TreeDTO toTriggerDTO(Tree tree);
-
+ @Mapping(target = "parentId", source = "parent.id")
+ @Mapping(target = "groupId", source = "group.id")
+ TreeDTO toTriggerDTO(Tree tree);
 }
 </code></pre>
 					</section>
+
+
+					<section>
+						<h2>Code-review - the spring way? (3/3)</h2>
+<pre><code>
+@Mapper(uses = {TreeLeavesMapper.class})
+public abstract class TreeMapperRevisited {
+
+    @Autowired
+    TreeRepository treeRepository;
+
+    @Mapping(target = "leaves", ignore = true)
+    @Mapping(target = "parent", source = "parentId")
+    abstract Tree toTree(TreeDTO tree);
+
+    public Tree toTree(Long id) {
+        return treeRepository.findOne(id);
+    }
+
+}
+</code></pre>
+				</section>
+				</section>
+
+
+				<section>
+					<h2>Odpowiedzialność mapera</h2>
+					<h3>to nie logika biznesowa</h3>
+					<pre><code>
+@Mapper
+public abstract class TreeMapper {
+
+    @Mapping(target = "parentId", source = "parent.id")
+    @Mapping(target = "groupId", source = "group.id")
+    @Mapping(target = "leaves", ignore = true)
+    abstract TreeDTO toTriggerDTO(Tree tree);
+
+    public final TreeDTO createNewTreeDTO(Tree tree) {
+        TreeDTO treeDTO = toTriggerDTO(tree);
+        treeDTO.withStatus(TreeStatus.NEW);
+        return treeDTO;
+    }
+}
+</code></pre>
+				</section>
+
+
+				<section>
+					<h2>problem z mnogością nazw (jednocześnie)</h2>
+					<ul>
+						<li>create</li>
+						<li>convertAtoB</li>
+						<li>update</li>
+						<li>itd...</li>
+					</ul>
+
+					<div>a może po prostu "toType" lub "toTargetType..."?</div>
+				</section>
+
+				<section>
+					<h2>Własny kod w maperze</h2>
+					<h3>iterable/noniterable</h3>
+					<span>It is not allowed to declare mapping methods with an iterable source and a non-iterable target or the other way around. An error will be raised when detecting this situation.</span>
+					<a href="http://mapstruct.org/documentation/stable/reference/html/">MapStruct 1.1.0.Final Reference Guide</a>
 				</section>
 
 				<section data-background="img/pgssoftware-logo-variants/pgssoftware-logo.svg" data-background-repeat="no-repeat" data-background-size="600px" data-background-position="left bottom">
