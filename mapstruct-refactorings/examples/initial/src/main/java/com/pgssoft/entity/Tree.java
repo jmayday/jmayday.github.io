@@ -1,5 +1,7 @@
 package com.pgssoft.entity;
 
+import java.util.List;
+
 public class Tree {
 
     public String getName() {
@@ -18,6 +20,8 @@ public class Tree {
     private Group group;
 
     private Tree parent;
+
+    private List<Leaf> leaves;
 
     public Group getGroup() {
         return group;
@@ -41,5 +45,13 @@ public class Tree {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Leaf> getLeaves() {
+        return leaves;
+    }
+
+    public void setLeaves(List<Leaf> leaves) {
+        this.leaves = leaves;
     }
 }

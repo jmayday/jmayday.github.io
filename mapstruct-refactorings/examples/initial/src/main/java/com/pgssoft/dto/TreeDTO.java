@@ -1,5 +1,7 @@
 package com.pgssoft.dto;
 
+import java.util.List;
+
 public class TreeDTO {
 
     public String getNewField() {
@@ -55,5 +57,20 @@ public class TreeDTO {
         this.parentId = parentId;
         return this;
     }
+
+    public TreeDTO withLeaves(List<LeafDTO> leaves) {
+        this.leaves = leaves;
+        return this;
+    }
+
+    public List<LeafDTO> getLeaves() {
+        return leaves;
+    }
+
+    public void setLeaves(List<LeafDTO> leaves) {
+        this.leaves = leaves;
+    }
+
+    private List<LeafDTO> leaves;
 
 }

@@ -174,18 +174,15 @@ public interface MySimpleMapper {
 					<section>
 						<h2>Code-review - the mapstruct way (1/2)</h2>
 						<pre><code>
-public abstract class TriggerMapper {
+public abstract class TreeMapper {
 
-    @Inject
-    TriggerGroupMapper rowMapper;
-
-    public final TriggerDTS toTriggerDTO(Trigger trigger) {
-        TriggerDTS dto = new TriggerDTS();
+    public final TreeDTO toTreeDTO(Tree tree) {
+        TreeDTO dto = new TreeDTO();
 
         return dto
-            .withGroups(rowMapper.toTriggerGroupDTO(trigger.getGroups()))
-            .withTypeId(trigger.getType().getId())
-            .withUnitTemplateId(trigger.getTemplate().getId());
+                .withName(tree.getName())
+                .withGroupId(tree.getGroup().getId())
+                .withParentId(tree.getParent().getId());
     }
 }
 </code></pre>
@@ -194,13 +191,12 @@ public abstract class TriggerMapper {
 					<section>
 						<h2>Code-review - the mapstruct way (2/2)</h2>
 						<pre><code>
-@Mapper(componentModel = "spring", uses = {TriggerGroupMapper.class})
-public interface TriggerMapper {
+@Mapper
+public interface TreeMapper {
 
-    @Mapping(target = "ids", ignore = true)
-    @Mapping(target = "typeId", source = "type.id")
-    @Mapping(target = "templateId", source = "template.id")
-    TriggerDTS toTriggerDTS(Trigger trigger);
+    @Mapping(target = "parentId", source = "parent.id")
+    @Mapping(target = "groupId", source = "group.id")
+    TreeDTO toTriggerDTO(Tree tree);
 
 }
 </code></pre>
@@ -210,11 +206,38 @@ public interface TriggerMapper {
 
 				<section>
 					<section>
-						<h2>Code-review - spring way?</h2>
+						<h2>Code-review - the spring way? (1/2)</h2>
+						<pre><code>
+public abstract class TriggerMapper {
 
+    @Inject
+    TreeLeavesMapper treeLeavesMapper;
 
-						<aside class="notes">
-						</aside>
+   	public final TreeDTO toTreeDTO(Tree tree) {
+        TreeDTO dto = new TreeDTO();
+
+        return dto
+                .withName(tree.getName())
+                .withGroupId(tree.getGroup().getId())
+                .withParentId(tree.getParent().getId()
+				.withLeaves(treeLeavesMapper.toLeafDTO(tree.getLeaves()));
+	}
+}
+</code></pre>
+					</section>
+
+					<section>
+						<h2>Code-review - the spring way? (2/2)</h2>
+						<pre><code>
+@Mapper(componentModel = "spring", uses = {TreeLeavesMapper.class})
+public interface TreeMapper {
+
+    @Mapping(target = "parentId", source = "parent.id")
+    @Mapping(target = "groupId", source = "group.id")
+    TreeDTO toTriggerDTO(Tree tree);
+
+}
+</code></pre>
 					</section>
 				</section>
 
