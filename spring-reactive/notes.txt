@@ -1,0 +1,41 @@
+
+Spring reactive
+
+Back-pressure
+Consumer controls the flow. It can tell (to Producer) how much data can it handle.
+You can't overwhelm reactive consumer. Eg You can't DDoS reactive consumer.
+
+Reactive streams (2015, Netflix, Pivotal and Lightbend)
+* low level contracts, back-pressure
+* incorporated in JDK 9 (java.util.concurrent.Flow)
+
+Netflix/RxJava -> ReactiveX/RxJava
+* tools used by Netflix released as open source
+
+Reactor (Pivotal)
+* Java framework, wrapper around low-level network runtimes
+
+Spring Framework 5.0
+* reactive features, built on Reactor (but we may use also RxJava)
+
+Reactor project.
+2 specialzied types:
+Flux is a publisher which produces 1 to N values (unbounded)
+Mono is a publisher which produces 0 or 1 value
+
+
+Usecases
+- External Service Calls (in REST-ful services)
+
+Reactive drivers:
+
+NoSQL
+Reactive MongoDB
+Reactive Cassandra
+Readtive Couchbase
+Reactive Redis
+
+SQL
+Asynchronous Database Access API (ADBA)
+April 2018
+https://blogs.oracle.com/java/jdbc-next:-a-new-asynchronous-api-for-connecting-to-a-database
