@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/resources/1"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "data": "this is my data for id 1"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
