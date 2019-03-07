@@ -23,7 +23,7 @@ public class RemoteService {
 
   }
 
-  public Mono<RemoteServiceResponse> retrieve(long id) {
+  public Mono<RemoteServiceResponse> retrieve(String id) {
     return client
         .get()
         .uri(url, Map.of("resourceId", id))
